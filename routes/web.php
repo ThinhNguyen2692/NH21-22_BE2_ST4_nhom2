@@ -42,6 +42,15 @@ Route::get('/shop-product-list', function () {
     return view('/shop-product-list');
 });
 */
-Route::get('/{name?}', function ($name="shop-index") {
-    return view($name);
+
+Route::get('/', function () {
+    return view('index');
 });
+// Route::get('/{name?}', function ($name="shop-index") {
+//    return view($name);
+//});
+Route::get('/indexLH', function () {
+    return view('indexLH');
+}) -> middleware('checkage'); 
+
+
