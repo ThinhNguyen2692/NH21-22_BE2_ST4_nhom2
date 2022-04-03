@@ -35,6 +35,7 @@
   </div>
 </nav>
             <div>Đây là trang chủ</div>
+            <div>xin chao {{ $name}}</div>
 
 <form action="{{ url('/indexLH')}}" method="get">
             <input type="text" name="name" id="" >

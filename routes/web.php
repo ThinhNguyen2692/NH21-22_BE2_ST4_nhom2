@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\WelcomeCotroller;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,19 +41,31 @@ Route::get('/indexLH', function () {
 Route::get('/shopindex', function () {
     return view('shopindex');
 });
+
+*/
+Route::get('/', function () {
+    return view('shop-index');
+});
+Route::get('/shop-item', function () {
+    return view('/shop-item');
+});
 Route::get('/shop-product-list', function () {
     return view('/shop-product-list');
 });
-*/
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 // Route::get('/{name?}', function ($name="shop-index") {
 //    return view($name);
 //});
-Route::get('/indexLH', function () {
-    return view('indexLH');
-}) -> middleware('checkage'); 
+// Route::get('/indexLH', function () {
+//     return view('indexLH');
+// }) -> middleware('checkage'); 
+// Route::get('/', [WelcomeCotroller::class, 'index']);
+// Route::post('frombt', [WelcomeCotroller::class, 'frombt']);
+
+// Route::resource('/product', ProductController::class);  
+//  Route::post('/product', [ProductController::class, 'store']);
 
 
