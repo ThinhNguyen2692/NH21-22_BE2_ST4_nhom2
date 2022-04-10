@@ -43,22 +43,12 @@ Route::get('/shopindex', function () {
 });
 
 */
-Route::get('/', function () {
-    return view('shop-index');
-});
-Route::get('/shop-item', function () {
-    return view('/shop-item');
-});
-Route::get('/shop-product-list', function () {
-    return view('/shop-product-list');
-});
+
 
 // Route::get('/', function () {
 //     return view('index');
 // });
-// Route::get('/{name?}', function ($name="shop-index") {
-//    return view($name);
-//});
+
 // Route::get('/indexLH', function () {
 //     return view('indexLH');
 // }) -> middleware('checkage'); 
@@ -68,4 +58,18 @@ Route::get('/shop-product-list', function () {
 // Route::resource('/product', ProductController::class);  
 //  Route::post('/product', [ProductController::class, 'store']);
 
+// Route::resource('/product', ProductController::class);  
 
+Route::get('/{name?}', function ($name="shop-index") {
+   return view($name);
+});
+
+// Route::get('/', function () {
+//     return view('shop-index');
+// });
+// Route::get('/shop-item', function () {
+//     return view('/shop-item');
+// });
+// Route::get('/shop-product-list', function () {
+//     return view('/shop-product-list');
+// });
