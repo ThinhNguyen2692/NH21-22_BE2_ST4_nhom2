@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WelcomeCotroller;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopIndexController;
+use App\Http\Controllers\ShopItemController;
+use App\Http\Controllers\ShopListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +63,9 @@ Route::get('/shopindex', function () {
 
 // Route::resource('/product', ProductController::class);  
 
-Route::get('/{name?}', function ($name="shop-index") {
-   return view($name);
-});
+// Route::get('/{name?}', function ($name="shop-index") {
+//    return view($name);
+// });
 
 // Route::get('/', function () {
 //     return view('shop-index');
@@ -73,3 +76,7 @@ Route::get('/{name?}', function ($name="shop-index") {
 // Route::get('/shop-product-list', function () {
 //     return view('/shop-product-list');
 // });
+
+Route::get('/', [ShopIndexController::class, 'index']);
+Route::get('/shop-item', [ShopItemController::class, 'index']);
+Route::get('/shop-product-list', [ShopListController::class, 'index']);
