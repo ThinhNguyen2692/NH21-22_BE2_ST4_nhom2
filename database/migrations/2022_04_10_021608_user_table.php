@@ -21,8 +21,7 @@ class UserTable extends Migration
             $table->string('phone_number', 10);
             $table->integer('role_id');
             $table->string('pass_word', 150);
-
-            
+            $table->timestamps();
         });
     }
 

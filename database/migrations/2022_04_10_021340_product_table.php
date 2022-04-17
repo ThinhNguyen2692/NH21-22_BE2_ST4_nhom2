@@ -14,7 +14,7 @@ class ProductTable extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->id('id_product');
+            $table->id();
             $table->string('name', 150);
             $table->integer('manu_id');
             $table->integer('type_id');
@@ -24,11 +24,12 @@ class ProductTable extends Migration
             $table->integer('feature');
             $table->integer('quantity');
             $table->integer('status');
-            $table->string('Gram', 100);
+            $table->string('Gam', 100);
             $table->string('Dung_Luong', 150);
             $table->string('HDH', 100);
             $table->string('chip', 100);
             $table->string('origin', 100);
+            $table->timestamps();
         });
     }
 

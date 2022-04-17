@@ -9,6 +9,6 @@ class Manufactures extends Model
 {
     use HasFactory;
     public function Products(){
-        return this->hasMany(Products::class, 'manu_id','id');
+      //  return this->hasMany(Products::class, 'id','id');
     }
 }

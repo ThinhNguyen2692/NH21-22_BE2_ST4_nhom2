@@ -14,9 +14,10 @@ class SaleTable extends Migration
     public function up()
     {
         Schema::create('sale', function (Blueprint $table) {
-            $table->id('sale_id');
+            $table->id();
             $table->string('id_product');
             $table->integer('sale(%)');
+            $table->timestamps();
         });
     }
 

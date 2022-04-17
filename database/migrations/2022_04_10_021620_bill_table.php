@@ -14,11 +14,12 @@ class BillTable extends Migration
     public function up()
     {
         Schema::create('bill', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->string('id_product');
             $table->string('id_user');
             $table->string('quantity');
             $table->integer('total');
+            $table->timestamps();
         });
     }
 

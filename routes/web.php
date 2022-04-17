@@ -79,8 +79,8 @@ Route::get('/shopindex', function () {
 //     return view('/shop-product-list');
 // });
 
-// Route::get('/{name?}', [MyController::class, 'index']);
+Route::get('/{name?}', [MyController::class, 'index']);
 // Route::get('/shop-item', [ShopItemController::class, 'index']);
 // Route::get('/shop-product-list', [ShopListController::class, 'index']);
 
-Route::get('/', [WelcomeCotroller::class, 'index']);
+// Route::get('/', [WelcomeCotroller::class, 'index']);
