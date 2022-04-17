@@ -29,7 +29,6 @@ class ProductTable extends Migration
             $table->string('HDH', 100);
             $table->string('chip', 100);
             $table->string('origin', 100);
-
         });
     }
 

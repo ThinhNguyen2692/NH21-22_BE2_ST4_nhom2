@@ -6,7 +6,7 @@ use App\Http\Controllers\WelcomeCotroller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopIndexController;
 use App\Http\Controllers\ShopItemController;
-use App\Http\Controllers\ShopListController;
+use App\Http\Controllers\MyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,13 +70,17 @@ Route::get('/shopindex', function () {
 // Route::get('/', function () {
 //     return view('shop-index');
 // });
+
 // Route::get('/shop-item', function () {
 //     return view('/shop-item');
 // });
+
 // Route::get('/shop-product-list', function () {
 //     return view('/shop-product-list');
 // });
 
-Route::get('/', [ShopIndexController::class, 'index']);
-Route::get('/shop-item', [ShopItemController::class, 'index']);
-Route::get('/shop-product-list', [ShopListController::class, 'index']);
+// Route::get('/{name?}', [MyController::class, 'index']);
+// Route::get('/shop-item', [ShopItemController::class, 'index']);
+// Route::get('/shop-product-list', [ShopListController::class, 'index']);
+
+Route::get('/', [WelcomeCotroller::class, 'index']);
