@@ -16,6 +16,7 @@ class ManufacturesTable extends Migration
         Schema::create('manufactures', function (Blueprint $table) {
             $table->id();
             $table->string('manu_name');
+            $table->string('image');
             $table->timestamps();
             
         });

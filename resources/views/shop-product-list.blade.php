@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
 
+
     <div class="title-wrapper">
       <div class="container"><div class="container-inner">
         <h1><span>MEN</span> CATEGORY</h1>

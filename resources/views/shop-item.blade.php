@@ -90,11 +90,12 @@
                     <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model5.jpg"></a>
                   </div>
                 </div>
+                @foreach($data as $row)
                 <div class="col-md-6 col-sm-6">
-                  <h1>Cool green dress with red bell</h1>
+                  <h1>{{ $row->name}}</h1>
                   <div class="price-availability-block clearfix">
                     <div class="price">
-                      <strong><span>$</span>47.00</strong>
+                      <strong><span>$</span>{{ $row->price}}</strong>
                       <em>$<span>62.00</span></em>
                     </div>
                     <div class="availability">
@@ -102,8 +103,7 @@
                     </div>
                   </div>
                   <div class="description">
-                    <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat 
-Nostrud duis molestie at dolore.</p>
+                    <p>{{ $row->description}}</p>
                   </div>
                   <div class="product-page-options">
                     <div class="pull-left">
@@ -129,6 +129,7 @@ Nostrud duis molestie at dolore.</p>
                     </div>
                     <button class="btn btn-primary" type="submit">Add to cart</button>
                   </div>
+                  @endforeach
                   <div class="review">
                     <input type="range" value="4" step="0.25" id="backing4">
                     <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false"  data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">

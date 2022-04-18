@@ -17,23 +17,26 @@ class Manufactures extends Seeder
     public function run()
     {
         DB::table('manufactures')->insert([
-            'manu_name' => 'Apple'
+            'manu_name' => 'Apple',
+            'image' => 'Apple.png'          
+        ]);
+        DB::table('manufactures')->insert([
+            'manu_name' => 'SamSung',
+            'image' => 'samsung.png'          
+        ]);
+        DB::table('manufactures')->insert([
+            'manu_name' => 'Oppo',
+            'image' => 'oppo.png'
             
         ]);
         DB::table('manufactures')->insert([
-            'manu_name' => 'SamSung'
+            'manu_name' => 'HP',
+            'image' => 'hp.jpeg'
             
         ]);
         DB::table('manufactures')->insert([
-            'manu_name' => 'Oppo'
-            
-        ]);
-        DB::table('manufactures')->insert([
-            'manu_name' => 'HP'
-            
-        ]);
-        DB::table('manufactures')->insert([
-            'manu_name' => 'ASUS'
+            'manu_name' => 'ASUS',
+            'image' => 'asus.png'
             
         ]);
     }

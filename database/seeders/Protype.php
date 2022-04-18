@@ -18,23 +18,23 @@ class Protype extends Seeder
     public function run()
     {
         DB::table('protypes')->insert([
-            'type_name' => 'laptop'
+            'type_name' => 'Laptop'
             
         ]);
         DB::table('protypes')->insert([
-            'type_name' => 'Điện thoại'
+            'type_name' => 'Smartphone'
             
         ]);
         DB::table('protypes')->insert([
-            'type_name' => 'Đồng hồ thông minh'
+            'type_name' => 'Smart watch'
             
         ]);
         DB::table('protypes')->insert([
-            'type_name' => 'taplet'
+            'type_name' => 'Taplet'
             
         ]);
         DB::table('protypes')->insert([
-            'type_name' => 'Phụ kiện'
+            'type_name' => 'Accessory'
             
         ]);
     }

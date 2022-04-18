@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Manufactures;
 
 class MyController extends Controller
 {
@@ -15,5 +16,7 @@ class MyController extends Controller
             return view($name,['dataNew'=> $productsNew],['datafeature'=> $productsfeature]);
         }
         return view($name);
+        
     }
+    
 }

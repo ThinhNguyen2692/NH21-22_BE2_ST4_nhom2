@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Manufactures extends Model
 {
-    use HasFactory;
-    public function Products(){
-      //  return this->hasMany(Products::class, 'id','id');
-    }
+    protected $table = 'manufactures';
+    // public function Products(){
+    //     return this->hasMany(Products::class, 'id','id');
+    // }
 }
