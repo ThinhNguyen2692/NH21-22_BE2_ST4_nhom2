@@ -84,3 +84,4 @@ Route::get('/{name?}', [MyController::class, 'index']);
 // Route::get('/shop-product-list', [ShopListController::class, 'index']);
 
 // Route::get('/', [WelcomeCotroller::class, 'index']);
+Route::get('/shop-item/{id}', [MyController::class, 'showItem']);
