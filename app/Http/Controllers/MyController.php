@@ -18,5 +18,10 @@ class MyController extends Controller
         return view($name);
         
     }
-    
+    public function showItem($id)
+    {   
+        $products = Product::where('id', '=', $id)->get();
+        return view('shop-item',['data'=> $products]);
+    }
+ 
 }
