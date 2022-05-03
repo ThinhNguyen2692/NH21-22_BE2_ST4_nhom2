@@ -18,165 +18,118 @@
       <div class="item carousel-item-four active">
         <div class="container">
           <div class="carousel-position-four text-center">
-            <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
-              Tones of <br /><span class="color-red-v2">Shop UI Features</span><br /> designed
-            </h2>
-            <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Lorem ipsum dolor sit amet constectetuer diam <br />
-              adipiscing elit euismod ut laoreet dolore.</p>
+          
           </div>
         </div>
       </div>
 
-      <!-- Second slide -->
-      <div class="item carousel-item-five">
-        <div class="container">
-          <div class="carousel-position-four text-center">
-            <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
-              Unlimted
-            </h2>
-            <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
-              Layout Options
-            </p>
-            <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
-              Fully Responsive
-            </p>
-            <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
-          </div>
-          <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="assets/pages/img/shop-slider/slide2/price.png" alt="Price" data-animation="animated zoomIn">
-        </div>
-      </div>
-
-      <!-- Third slide -->
-      <div class="item carousel-item-six">
-        <div class="container">
-          <div class="carousel-position-four text-center">
-            <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
-              Full Admin &amp; Frontend
-            </span>
-            <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
-              eCommerce UI
-            </p>
-            <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
-              Is Ready For Your Project
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fourth slide -->
-      <div class="item carousel-item-seven">
-        <div class="center-block">
-          <div class="center-block-wrap">
-            <div class="center-block-body">
-              <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
-                The most <br />
-                wanted bijouterie
-              </h2>
-              <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
-      <i class="fa fa-angle-left" aria-hidden="true"></i>
-    </a>
-    <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
-      <i class="fa fa-angle-right" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
-<!-- END SLIDER -->
+     
 
 <div class="main">
   <div class="container">
+    <!-- Products tab & slick -->
+		
+			<!-- Products tab & slick -->
     <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
-    <div class="row margin-bottom-40">
-      <!-- BEGIN SALE PRODUCT -->
-      <div class="col-md-12 sale-product">
-        <h2>New Arrivals</h2>
-        <div class="owl-carousel owl-carousel5">
-          @foreach($dataNew as $row)
 
-          <div>
-            <div class="product-item">
+      <!-- BEGIN SALE PRODUCT -->
+
+     <img style="cursor:pointer" src="https://cdn.tgdd.vn/2022/04/banner/Sansale-desk-1-1200x90.png" alt="Hotsale TGDD Desk" width="1200" height="90">
+
+    <div class="row  margin-bottom-40">
+      <div class="col-md-12 sale-product themMau" >
+        <div class="owl-carousel owl-carousel5"    >
+            @foreach($productSale as $row)
+  
+            <div class="product-item setImg2">
               <div class="pi-img-wrapper">
                 <img src="assets/pages/img/products/{{ $row->image}}" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="/shop-item/{{ $row->id}}">{{ $row->name}}</a></h3>
-              <div class="pi-price">{{ $row->price}}</div>
+              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <div class="pi-price" style="Color:red;" >{{number_format($row->price-($row->price * ($row->sale_price/100)))}}  ({{-$row->sale_price}}%)</div>
+              <div>{{ number_format($row->price)}}</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-sale"></div>
+            
             </div>
-          </div>
           @endforeach
-
-
+          
         </div>
       </div>
       <!-- END SALE PRODUCT -->
     </div>
     <!-- END SALE PRODUCT & NEW ARRIVALS -->
-
     <!-- BEGIN SIDEBAR & CONTENT -->
-    <div class="row margin-bottom-40 ">
+
       <!-- BEGIN SIDEBAR -->
      
       <!-- END SIDEBAR -->
       <!-- BEGIN CONTENT -->
+      <h2>New product</h2>
 
-      <div class="col-md-12 col-sm-8 ">
-        <h2>Three items</h2>
-        <div class="owl-carousel owl-carousel5">
-
-          @foreach($datafeature as $row)
-          <div>
-            <div class="product-item">
+      <div class="row  margin-bottom-40">
+      <div class="col-md-12 sale-product  " >
+        <div class="owl-carousel owl-carousel5"    >
+            @foreach($dataNew as $row)
+  
+            <div class="product-item setImg2">
               <div class="pi-img-wrapper">
                 <img src="assets/pages/img/products/{{ $row->image}}" class="img-responsive" alt="Berry Lace Dress">
                 <div>
                   <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                 </div>
               </div>
-              <h3><a href="/shop-item">{{ $row->name}}</a></h3>
-              <div class="pi-price">{{ $row->price}}</div>
+              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <?php if($row->sale_price != 0){
+                ?>
+              <div class="pi-price" style="Color:red;" >{{number_format($row->price-($row->price * ($row->sale_price/100)))}}  ({{-$row->sale_price}}%)</div>
+              <div>{{ number_format($row->price)}}</div>
+              <?php } else{
+                ?>
+                 <div class="pi-price">{{ number_format($row->price)}}</div>
+                <?php }?>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-new"></div>
+            
             </div>
-          </div>
           @endforeach
+          
         </div>
       </div>
+      <!-- END SALE PRODUCT -->
+    </div>
 
-      <div class="col-md-9 col-sm-8">
-        <div class="owl-carousel owl-carousel3">
-          <div>
-            <div class="product-item">
+      <h2>Featured products</h2>
+      <div class="row  margin-bottom-40">
+      <div class="col-md-12 sale-product  " >
+        <div class="owl-carousel owl-carousel5"    >
+            @foreach($datafeature as $row)
+  
+            <div class="product-item setImg2">
               <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                <img src="assets/pages/img/products/{{ $row->image}}" class="img-responsive" alt="Berry Lace Dress">
                 <div>
-                  <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
                 </div>
               </div>
-              <h3><a href="/shop-item">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
+              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <div class="pi-price">{{ number_format($row->price)}}</div>
+              <div class="pi-price"> (-{{ $row->sale_price}}%)</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-new"></div>
+            
             </div>
-          </div>
+          @endforeach
+          
         </div>
       </div>
+      <!-- END SALE PRODUCT -->
+    </div>
 
       <!-- END CONTENT -->
-    </div>
+
     <!-- END SIDEBAR & CONTENT -->
 
     <!-- BEGIN TWO PRODUCTS & PROMO -->

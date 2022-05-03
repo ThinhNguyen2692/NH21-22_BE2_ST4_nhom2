@@ -35,6 +35,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
   <meta property="og:url" content="-CUSTOMER VALUE-">
 
+
   <link rel="shortcut icon" href="favicon.ico">
 
   <!-- Fonts START -->
@@ -44,25 +45,31 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <!-- Fonts END -->
 
   <!-- Global styles START -->
-  <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/plugins/bootstrap/css/all.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Global styles END -->
 
   <!-- Page level plugin styles START -->
-  <link href="assets/pages/css/animate.css" rel="stylesheet">
-  <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-  <link href="assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/animate.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/style_Them.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/layout2.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/plugins/fancybox/source/jquery.fancybox.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/plugins/owl.carousel/assets/owl.carousel.css')}}" rel="stylesheet">
   <!-- Page level plugin styles END -->
 
   <!-- Theme styles START -->
-  <link href="assets/pages/css/components.css" rel="stylesheet">
-  <link href="assets/pages/css/slider.css" rel="stylesheet">
-  <link href="assets/pages/css/style-shop.css" rel="stylesheet" type="text/css">
-  <link href="assets/corporate/css/style.css" rel="stylesheet">
-  <link href="assets/corporate/css/style-responsive.css" rel="stylesheet">
-  <link href="assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
-  <link href="assets/corporate/css/custom.css" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/components.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/slider.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/pages/css/style-shop.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/corporate/css/style.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/corporate/css/style-responsive.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/corporate/css/themes/red.css')}}" rel="stylesheet" id="style-color">
+  <link href="{{ asset('assets/corporate/css/custom.css')}}" rel="stylesheet">
+
   <!-- Theme styles END -->
+
+
 </head>
 <!-- Head END -->
 
@@ -135,7 +142,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <!-- BEGIN HEADER -->
   <div class="header">
     <div class="container">
-      <a class="site-logo" href="/shop-index"><img src="assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
+      <a class="site-logo" href="/shop-index"><img src="{{ asset('assets/corporate/img/logos/logo-shop-red.png')}}" alt="Metronic Shop UI"></a>
 
       <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -236,7 +243,7 @@ $manufactures = Manufactures::all();
                       <ul>
                         
                       @foreach($manufactures as $row)
-                        <li><a  href="/shop-product-list/{{ $row->id}}"><img title="esprit" alt="esprit" src="assets/pages/img/brands/{{ $row->image}}"></a></li>
+                        <li><a  href="/shop-product-list/{{ $row->id }}_manu"><img title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a></li>
                       @endforeach
                       </ul>
                     </div>
@@ -245,11 +252,11 @@ $manufactures = Manufactures::all();
               </li>
             </ul>
           </li>
-          <li><a href="/shop-item">Smartphone</a></li>
-          <li><a href="/shop-item">Laptop</a></li>
-          <li><a href="/shop-item">Taplet</a></li>
-          <li><a href="/shop-item">Smart watch</a></li>
-          <li><a href="/shop-item">Accessory</a></li>
+          <li><a href="/shop-product-list/2_type">Smartphone</a></li>
+          <li><a href="/shop-product-list/1_type">Laptop</a></li>
+          <li><a href="/shop-product-list/4_type">Taplet</a></li>
+          <li><a href="/shop-product-list/3_type">Smart watch</a></li>
+          <li><a href="/shop-product-list/5_type">Accessory</a></li>
           <!-- BEGIN TOP SEARCH -->
           <li class="menu-search">
             <span class="sep"></span>
@@ -276,19 +283,11 @@ $manufactures = Manufactures::all();
   <!-- BEGIN BRANDS -->
   <div class="brands">
     <div class="container">
-      <div class="owl-carousel owl-carousel6-brands">
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-        <a href="/shop-product-list"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
+      <div class="setCenter">
+      @foreach($manufactures as $row)
+                      <a class="setImg"  href="/shop-product-list/{{ $row->id}}"><img title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a>
+     @endforeach
+
       </div>
     </div>
   </div>
@@ -505,21 +504,22 @@ $manufactures = Manufactures::all();
   <!--[if lt IE 9]>
     <script src="assets/plugins/respond.min.js"></script>  
     <![endif]-->
-  <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
-  <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-  <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
-  <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+  <script src="{{ asset('assets/plugins/jquery.min.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/plugins/jquery-migrate.min.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/corporate/scripts/back-to-top.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
   <!-- END CORE PLUGINS -->
 
   <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
-  <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-  <script src="assets/plugins/owl.carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
-  <script src='assets/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
-  <script src="assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+  <script src="{{ asset('assets/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script><!-- pop up -->
+  <script src="{{ asset('assets/plugins/owl.carousel/owl.carousel.min.js')}}" type="text/javascript"></script><!-- slider for products -->
+  <script src="{{ asset('assets/plugins/zoom/jquery.zoom.min.js')}}" type="text/javascript"></script><!-- product zoom -->
+  <script src="{{ asset('assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js')}}" type="text/javascript"></script><!-- Quantity -->
 
-  <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
-  <script src="assets/pages/scripts/bs-carousel.js" type="text/javascript"></script>
+  <script src="{{ asset('assets/corporate/scripts/layout.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/pages/scripts/bs-carousel.js')}}" type="text/javascript"></script>
+  <script src="{{ asset('assets/pages/scripts/eventThem.js')}}" ></script>
   <script type="text/javascript">
     jQuery(document).ready(function() {
       Layout.init();
@@ -529,7 +529,7 @@ $manufactures = Manufactures::all();
       Layout.initTwitter();
     });
   </script>
-  <!-- END PAGE LEVEL JAVASCRIPTS -->
+
 </body>
 <!-- END BODY -->
 

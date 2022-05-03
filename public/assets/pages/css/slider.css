@@ -96,26 +96,26 @@
 }
 
 /* Carousel Item Background Images */
-.carousel-slider .carousel-item-one {
+/* .carousel-slider .carousel-item-one {
     background: url(../../../assets/onepage/img/slider/slide1.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
-.carousel-slider .carousel-item-two {
+/* .carousel-slider .carousel-item-two {
     background: url(../../../assets/onepage/img/slider/slide2.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
-.carousel-slider .carousel-item-three {
+/* .carousel-slider .carousel-item-three {
     background: url(../../../assets/onepage/img/slider/slide3.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
 .carousel-slider .carousel-item-four {
-    background: url(../../../assets/pages/img/shop-slider/slide1/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide1/TGDDDesk1920x4501-1920x450.png);
     background-size: cover;
     background-position: center center;
 }
@@ -137,23 +137,23 @@
     background-position: center center;
 }
 
-.carousel-slider .carousel-item-eight {
+/* .carousel-slider .carousel-item-eight {
     background: url(../../../assets/pages/img/frontend-slider/bg9.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
-.carousel-slider .carousel-item-nine {
+/* .carousel-slider .carousel-item-nine {
     background: url(../../../assets/pages/img/frontend-slider/bg1.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
-.carousel-slider .carousel-item-ten {
+/* .carousel-slider .carousel-item-ten {
     background: url(../../../assets/pages/img/frontend-slider/bg2.jpg);
     background-size: cover;
     background-position: center center;
-}
+} */
 
 /* Carousel Titles */
 .carousel-slider .carousel-title-v1 {
