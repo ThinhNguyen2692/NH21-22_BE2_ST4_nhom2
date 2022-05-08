@@ -262,9 +262,10 @@ $manufactures = Manufactures::all();
             <span class="sep"></span>
             <i class="fa fa-search search-btn"></i>
             <div class="search-box">
-              <form action="#">
+              <form action="{{ url('shop-product-list')}}" method="POST">
+              @csrf
                 <div class="input-group">
-                  <input type="text" placeholder="Search" class="form-control">
+                  <input name="keyword" type="text" placeholder="Search" class="form-control">
                   <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit">Search</button>
                   </span>
