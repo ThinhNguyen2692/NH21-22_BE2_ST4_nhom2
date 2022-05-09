@@ -48,7 +48,7 @@
                   <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
                 </div>
               </div>
-              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <h3><a href="/shop-item/item_{{ $row->id}}">{{ $row->name}}</a></h3>
               <div class="pi-price" style="Color:red;" >{{number_format($row->price-($row->price * ($row->sale_price/100)))}}  ({{-$row->sale_price}}%)</div>
               <div>{{ number_format($row->price)}}</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
@@ -82,7 +82,7 @@
                   <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
                 </div>
               </div>
-              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <h3><a href="/shop-item/item_{{ $row->id}}">{{ $row->name}}</a></h3>
               <?php if($row->sale_price != 0){
                 ?>
               <div class="pi-price" style="Color:red;" >{{number_format($row->price-($row->price * ($row->sale_price/100)))}}  ({{-$row->sale_price}}%)</div>
@@ -115,7 +115,7 @@
                   <a href="assets/pages/img/products/{{ $row->image}}" class="btn btn-default fancybox-button">Zoom</a>
                 </div>
               </div>
-              <h3><a href="/shop-item/{{ $row->id}}_item">{{ $row->name}}</a></h3>
+              <h3><a href="/shop-item/item_{{ $row->id}}">{{ $row->name}}</a></h3>
               <div class="pi-price">{{ number_format($row->price)}}</div>
               <div class="pi-price"> (-{{ $row->sale_price}}%)</div>
               <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
@@ -144,5 +144,4 @@
     <!-- END TWO PRODUCTS & PROMO -->
   </div>
 </div>
-
 @endsection

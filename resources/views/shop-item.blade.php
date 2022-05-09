@@ -4,7 +4,7 @@
 <div class="main">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="/index">Home</a></li>
+      <li><a href="http://127.0.0.1:8000">Home</a></li>
       <li><a href="">Store</a></li>
       <li class="active">Cool green dress with red bell</li>
     </ul>

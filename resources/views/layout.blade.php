@@ -142,7 +142,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <!-- BEGIN HEADER -->
   <div class="header">
     <div class="container">
-      <a class="site-logo" href="/shop-index"><img src="{{ asset('assets/corporate/img/logos/logo-shop-red.png')}}" alt="Metronic Shop UI"></a>
+      <a class="site-logo" href="http://127.0.0.1:8000"><img src="{{ asset('assets/corporate/img/logos/logo-shop-red.png')}}" alt="Metronic Shop UI"></a>
 
       <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -226,10 +226,6 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
       <!-- BEGIN NAVIGATION -->
       <div class="header-navigation">
         <ul>
-<?php
-use App\Models\Manufactures;
-$manufactures = Manufactures::all();
-?>
           <li class="dropdown dropdown-megamenu">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
             Trademark
@@ -241,9 +237,8 @@ $manufactures = Manufactures::all();
 
                     <div class="col-md-12 nav-brands">
                       <ul>
-                        
                       @foreach($manufactures as $row)
-                        <li><a  href="/shop-product-list/{{ $row->id }}_manu"><img title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a></li>
+                        <li><a  href="/shop-product-list/manu_{{ $row->id }}"><img title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a></li>
                       @endforeach
                       </ul>
                     </div>
@@ -252,17 +247,15 @@ $manufactures = Manufactures::all();
               </li>
             </ul>
           </li>
-          <li><a href="/shop-product-list/2_type">Smartphone</a></li>
-          <li><a href="/shop-product-list/1_type">Laptop</a></li>
-          <li><a href="/shop-product-list/4_type">Taplet</a></li>
-          <li><a href="/shop-product-list/3_type">Smart watch</a></li>
-          <li><a href="/shop-product-list/5_type">Accessory</a></li>
+          @foreach($protype as $row)
+          <li><a href="/shop-product-list/type_{{ $row->id }}">{{$row->type_name}}</a></li>
+          @endforeach
           <!-- BEGIN TOP SEARCH -->
           <li class="menu-search">
             <span class="sep"></span>
             <i class="fa fa-search search-btn"></i>
             <div class="search-box">
-              <form action="{{ url('shop-product-list')}}" method="POST">
+              <form action="{{ url('shop-product-list')}}" method="get">
               @csrf
                 <div class="input-group">
                   <input name="keyword" type="text" placeholder="Search" class="form-control">
@@ -280,6 +273,7 @@ $manufactures = Manufactures::all();
     </div>
   </div>
   <!-- Header END -->
+   
   @yield('content')
   <!-- BEGIN BRANDS -->
   <div class="brands">
