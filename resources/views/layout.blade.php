@@ -275,6 +275,8 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   <!-- Header END -->
    
   @yield('content')
+
+  
   <!-- BEGIN BRANDS -->
   <div class="brands">
     <div class="container">

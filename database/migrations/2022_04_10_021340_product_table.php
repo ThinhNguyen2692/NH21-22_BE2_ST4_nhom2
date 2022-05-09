@@ -25,8 +25,8 @@ class ProductTable extends Migration
             $table->integer('feature');
             $table->integer('quantity');
             $table->integer('status');
-            $table->string('Gam', 100);
-            $table->string('Dung_Luong', 150);
+            $table->string('Ram', 100);
+            $table->string('Capacity', 150);
             $table->string('HDH', 100);
             $table->string('chip', 100);
             $table->string('origin', 100);
