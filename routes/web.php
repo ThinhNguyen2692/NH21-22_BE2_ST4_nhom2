@@ -80,12 +80,24 @@ Route::get('/shopindex', function () {
 // Route::get('/shop-product-list', function () {
 //     return view('/shop-product-list');
 // });  
+
+
+// Route::get('/shop-item', [ShopItemController::class, 'index']);
+// Route::get('/shop-product-list', [ShopListController::class, 'index']);
+// Route::get('/', [WelcomeCotroller::class, 'index']);
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::get('/', [MyController::class, 'index']);
 Route::get('/shop-product-list', [MyController::class, 'store']);
 //Route::get('/name', 'MyController@store');
 Route::get('/{name?}/{id?}', [MyController::class, 'show']);
 Route::post('/shop-product-list', [MyController::class, 'filter']);
-
-// Route::get('/shop-item', [ShopItemController::class, 'index']);
-// Route::get('/shop-product-list', [ShopListController::class, 'index']);
-// Route::get('/', [WelcomeCotroller::class, 'index']);
