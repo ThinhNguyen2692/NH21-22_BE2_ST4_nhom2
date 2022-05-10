@@ -31,6 +31,8 @@ Route::get('/', [MyController::class, 'index']);
 Route::get('/shop-product-list', [MyController::class, 'store']);
 Route::get('/indexAdmin', [AdminController::class, 'index']);
 Route::get('/indexAdmin/{name?}', [AdminController::class, 'show']);
+Route::get('/indexAdmin/{name?}/{id?}', [AdminController::class, 'destroy']);
+Route::post('/indexAdmin/{name?}', [AdminController::class, 'createProduct']);
 //Route::get('/name', 'MyController@store');
 Route::get('/{name?}/{id?}', [MyController::class, 'show']);
 Route::post('/shop-product-list', [MyController::class, 'filter']);

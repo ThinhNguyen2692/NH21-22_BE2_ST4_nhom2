@@ -150,11 +150,11 @@
                     </tr>
                     <tr>
                       <td class="datasheet-features-type">Ram</td>
-                      <td>{{ $row->Gam}}</td>
+                      <td>{{ $row->Ram}}</td>
                     </tr>
                     <tr>
                       <td class="datasheet-features-type">Dung lượng</td>
-                      <td>{{ $row->Dung_Luong}}</td>
+                      <td>{{ $row->Capacity}}</td>
                     </tr>
                     <tr>
                       <td class="datasheet-features-type">Chip</td>

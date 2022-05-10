@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <h1>Protype</h1>
             <br>
-            <a class="btn btn-info btn-sm" href="addManu.php">
+            <a class="btn btn-info btn-sm" href="{{url('indexAdmin/addprotype')}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Add
@@ -58,14 +58,15 @@
                   </tr>
               </thead>
               <tbody>
-                 
-                 
+           
+              @foreach($getProtypes as $row)
                   <tr>
+                 
                       <td>
-                          <?php 'type_id' ?>
+                         {{$row->id}}
                       </td>
                       <td>
-                      <?php 'type_name' ?>
+                      {{$row->type_name}}
                       </td>
                       
                       <td class="project-actions text-center" >
@@ -74,13 +75,15 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="delprotypes.php?id=">
+                          <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/protypes/'. $row->id . '')}}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a>
                       </td>
+                    
                   </tr>
+                  @endforeach
               </tbody>
           </table>
         </div>

@@ -27,7 +27,7 @@
         <div class="card-header">
           <h3 class="card-title">Manufactures</h3>
           <br>
-          <a class="btn btn-info btn-sm" href="addManu.php">
+          <a class="btn btn-info btn-sm" href="{{url('indexAdmin/addManu')}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Add
@@ -44,6 +44,7 @@
         <div class="card-body p-0">
           <table class="table table-striped projects">
               <thead>
+             
                   <tr>
                       <th style="width: 1%">
                           ID
@@ -62,15 +63,16 @@
               </thead>
               <tbody>
                  
-              
+              @foreach($getManufactures as $row)
+              <tr>
                       <td>
-                          <?php echo 'manu_id' ?>
+                         {{$row->id}}
                       </td>
                       <td>
-                      <?php echo 'manu_name'?>
+                      {{$row->manu_name}}
                       </td>
                       <td>
-                      <?php echo 'manu_name'?>
+                      <img style="width:50px" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}" alt="">
                       </td>
                       <td class="project-actions text-center" >
                           <a class="btn btn-info btn-sm" href="editmanu.php?id=">
@@ -78,15 +80,17 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="delmanu.php?id=">
+                          <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/manu/'. $row->id . '')}}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a>
                       </td>
+                    
                   </tr>
-                
+                  @endforeach
               </tbody>
+            
           </table>
         </div>
         <!-- /.card-body -->

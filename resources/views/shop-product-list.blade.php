@@ -41,8 +41,8 @@
               </select>
             </div>
             <div>
-              <label name="Capacity" class="control-label">Capacity:</label>
-              <select class="form-control input-sm combobox">
+              <label  class="control-label">Capacity:</label>
+              <select name="Capacity" class="form-control input-sm combobox">
                 <option value="" selected="selected">ALL</option>
                 <option value="8 GB">8 GB</option>
                 <option value="16 GB">16 GB</option>
@@ -95,7 +95,6 @@
                 } else { ?>
                   <option value="ALL" selected="selected">ALL</option>
                 <?php
-
                 }
                 ?>
                 @foreach($protype as $row)
@@ -113,11 +112,15 @@
             <a href="javascript:;"><i class="fa fa-th-list"></i></a>
           </div>
 
-          <div class="col-md-10 col-sm-10">    
+          <div class="col-md-10 col-sm-10">   
+           <!-- trả về ký tự tìm kiếm -->
           @if(isset($keyword))
           <div><h5>Search: {{$keyword}}</h5></div>
           @endif
-         
+            <!-- trả về tiêu chí lọc -->
+          @if(isset($locSP))
+          <div><h5>Search: {{$locSP}}</h5></div>
+          @endif
           </div>
           
         </form>
