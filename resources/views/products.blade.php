@@ -146,7 +146,7 @@
                       {{$row->origin}}
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="{{url('indexAdmin/products/editproduct/'. $row->id . '')}}">
                               <i class="fas fa-pencil-alt"></i>
                               Edit
                           </a>

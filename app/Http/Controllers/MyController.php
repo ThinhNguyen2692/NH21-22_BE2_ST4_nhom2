@@ -14,11 +14,11 @@ class MyController extends Controller
     {       
       
         //truy vấn có điều kiện
-            $productSale = Product::where('sale_price', '!=', 0, 'AND', 'status', '==', 1)->orderBy('id', 'DESC')->get();
+            $productSale = Product::where('sale_price', '!=', 0)->where( 'status', '=', 1)->orderBy('id', 'DESC')->get();
             //lấy 10 sp
-            $productsNew = Product::orderBy('id', 'DESC', 'AND', 'status', '==', 1)->LIMIT(10)->get();
+            $productsNew = Product::orderBy('id', 'DESC')->where( 'status', '=', 1)->LIMIT(10)->get();
             //truy vấn có điều kiện
-            $productsfeature = Product::where('feature', '=', 1, 'AND', 'status', '==', 1)->orderBy('id', 'DESC')->LIMIT(10)->get();
+            $productsfeature = Product::where('feature', '=', 1)->where( 'status', '=', 1)->orderBy('id', 'DESC')->LIMIT(10)->get();
             $manufactures = Manufactures::all();
             $protype = Protype::all();
             //truy vấn lấy 1 sp  
@@ -30,20 +30,20 @@ class MyController extends Controller
     {       
         $key = $id;
         $pieces = explode("_", $id);
-        $product = Product::where('type_id', '=', $id, 'AND', 'status', '==', 1)->paginate(3);
-        $products = Product::where('type_id', '=', $id, 'AND', 'status', '==', 1)->paginate(3);
+        $product = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(3);
+        $products = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(3);
         //lấy sản phẩm theo type
         if($pieces[0] == "type") {
             $id = $pieces[1];
-            $products = Product::where('type_id', '=', $id, 'AND', 'status', '==', 1)->paginate(6);
+            $products = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(6);
         }elseif($pieces[0] == "manu"){
             $id = $pieces[1];
             //lấy theo loại sp
-            $products = Product::where('manu_id', '=', $id, 'AND', 'status', '==', 1)->paginate(6);
+            $products = Product::where('manu_id', '=', $id)->where('status', '=', 1)->paginate(6);
         }elseif($pieces[0] == "item"){
             //lấy chi tiết sản phẩm
             $id = $pieces[1];
-            $product = Product::where('id', '=', $id, 'AND', 'status', '==', 1)->paginate(6);
+            $product = Product::where('id', '=', $id)->where('status', '=', 1);
 
         }
         $manufactures = Manufactures::all();
@@ -58,7 +58,7 @@ class MyController extends Controller
         $manufactures = Manufactures::all();
         $protype = Protype::all();
        $keyword =$request->get('keyword');
-      $products = Product::where('name', 'like', "%$keyword%", 'AND', 'status', '==', 1)->take(30)->paginate(6)->appends(['keyword' => $keyword]);
+      $products = Product::where('name', 'like', "%$keyword%")->where('status', '=', 1)->take(30)->paginate(6)->appends(['keyword' => $keyword]);
         return view('shop-product-list')->with('datas', $products)->with('manufactures', $manufactures)->with('keyword', $keyword)->with('protype', $protype);
     }
     public function filter(Request $request)

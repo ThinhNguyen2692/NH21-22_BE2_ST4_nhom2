@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WelcomeCotroller;
@@ -20,7 +19,9 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,3 +37,6 @@ Route::post('/indexAdmin/{name?}', [AdminController::class, 'createProduct']);
 //Route::get('/name', 'MyController@store');
 Route::get('/{name?}/{id?}', [MyController::class, 'show']);
 Route::post('/shop-product-list', [MyController::class, 'filter']);
+
+
+
