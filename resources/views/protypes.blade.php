@@ -70,7 +70,7 @@
                       </td>
                       
                       <td class="project-actions text-center" >
-                      <a class="btn btn-info btn-sm" href="editprotypes.php?id=">
+                      <a class="btn btn-info btn-sm" href="{{url('indexAdmin/protypes/editprotype/'. $row->id . '')}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

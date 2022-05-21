@@ -75,7 +75,7 @@
                       <img style="width:50px" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}" alt="">
                       </td>
                       <td class="project-actions text-center" >
-                          <a class="btn btn-info btn-sm" href="editmanu.php?id=">
+                          <a class="btn btn-info btn-sm" href="{{url('indexAdmin/manu/editmanu/'. $row->id . '')}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

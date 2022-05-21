@@ -43,7 +43,7 @@ class MyController extends Controller
         }elseif($pieces[0] == "item"){
             //lấy chi tiết sản phẩm
             $id = $pieces[1];
-            $product = Product::where('id', '=', $id)->where('status', '=', 1);
+            $product = Product::where('id', '=', $id)->where('status', '=', 1)->get();
 
         }
         $manufactures = Manufactures::all();
@@ -63,7 +63,6 @@ class MyController extends Controller
     }
     public function filter(Request $request)
     {       
-      
        //thứ tự mảng [Ram,CAPACITY,MANU,TYPE]
        if( $request->post('Manufactures') == "ALL"){
            //trường hợp manu Al

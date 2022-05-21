@@ -75,7 +75,6 @@
         </div>
       </div>
       <!-- END SIDEBAR -->
-
       <!-- BEGIN CONTENT -->
       <div class="col-md-9 col-sm-7">
         <div class="product-page">

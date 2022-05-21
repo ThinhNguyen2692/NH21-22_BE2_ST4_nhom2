@@ -153,7 +153,7 @@
                           <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/products/'. $row->id . '')}}">
                               <i class="fas fa-trash">
                               </i>
-                              Stop doing business
+                              Delete
                           </a>
                       </td>
                      

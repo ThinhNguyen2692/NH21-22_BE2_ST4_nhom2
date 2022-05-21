@@ -24,7 +24,7 @@
   <!-- Main content -->
   <section class="content">
   @foreach ($getItem as $row)
-    <form action="{{ url('indexAdmin/editproduct/'. $row->id . '')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('indexAdmin/products/editproduct')}}" method="post" enctype="multipart/form-data">
     @csrf
    
       <div class="card card-primary">
@@ -40,7 +40,7 @@
         <div class="card-body">
     <div class="form-group">
       <label for="inputName">Product ID</label>
-      <input type="text" id="inputName" class="form-control" value=" {{$row->id}}" name="id">
+      <input type="text" id="inputName" class="form-control" value=" {{$row->id}}" name="id" readonly>
     </div>
         <div class="card-body">
           <div class="form-group">

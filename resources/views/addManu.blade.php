@@ -50,17 +50,14 @@
 
       </div>
       <!-- /.card-body -->
-</div>
-
-<!-- /.card -->
-
-
-
-<div class="row">
+      <div class="row">
   <div class="col-12">
     <input name="submit" type="submit" value="Create new Porject" class="btn btn-success float-right">
   </div>
 </div>
+</div>
+<!-- /.card -->
+
 </form>
 </section>
 <!-- /.content -->
