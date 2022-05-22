@@ -40,7 +40,6 @@
       <div class="col-md-12 sale-product themMau" >
         <div class="owl-carousel owl-carousel5"    >
             @foreach($productSale as $row)
-  
             <div class="product-item setImg2">
               <div class="pi-img-wrapper">
                 <img src="assets/pages/img/products/{{ $row->image}}" class="img-responsive" alt="Berry Lace Dress">
@@ -51,12 +50,10 @@
               <h3><a href="/shop-item/item_{{ $row->id}}">{{ $row->name}}</a></h3>
               <div class="pi-price" style="Color:red;" >{{number_format($row->price-($row->price * ($row->sale_price/100)))}}  ({{-$row->sale_price}}%)</div>
               <div>{{ number_format($row->price)}}</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <a href="{{url('/shop-shopping-cart/'. $row->id)}}/1" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-sale"></div>
-            
             </div>
           @endforeach
-          
         </div>
       </div>
       <!-- END SALE PRODUCT -->

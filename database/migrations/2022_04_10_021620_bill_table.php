@@ -15,9 +15,7 @@ class BillTable extends Migration
     {
         Schema::create('bill', function (Blueprint $table) {
             $table->id();
-            $table->string('id_product');
             $table->string('id_user');
-            $table->string('quantity');
             $table->integer('total');
             $table->timestamps();
         });

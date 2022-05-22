@@ -167,7 +167,10 @@
               ?>
                 <div class="pi-price">{{ number_format($row->price)}}</div>
               <?php } ?>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <?php if($row->status == 0) echo '<br> <h3 style="color: red;">Sản phẩm tạm ngưng kinh doanh</h3>' ; elseif($row->quantity == 0){?>
+                <?php  echo '<br> <h3 style="color: red;">Sản phẩm tạm hết hàng</h3>';}  else{?><a href="{{url('/shop-shopping-cart/'. $row->id)}}/1" class="btn btn-default add2cart">Add to cart</a>
+                <?php }?>
+              
             </div>
           </div>
         </div>

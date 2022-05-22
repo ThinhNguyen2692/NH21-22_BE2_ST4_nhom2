@@ -110,12 +110,14 @@
                 <p>{{ $row->description}}</p>
               </div>
 
+             
               <div class="product-page-cart">
-                <div class="product-quantity">
-                  <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+              <?php if($row->status == 0) echo '<br> <h3 style="color: red;">Sản phẩm tạm ngưng kinh doanh</h3>' ; elseif($row->quantity == 0){?>
+                <?php  echo '<br> <h3 style="color: red;">Sản phẩm tạm hết hàng</h3>';}  else{?><a href="{{url('/shop-shopping-cart/'. $row->id)}}/1" class="btn btn-default add2cart">Add to cart</a>
+                <?php }?>
               </div>
+
+            
 
               <div class="review">
                 <input type="range" value="4" step="0.25" id="backing4">

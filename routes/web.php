@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\WelcomeCotroller;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ShopItemController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +21,6 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,6 +28,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/shop-shopping-cart/show', [CartController::class, 'Show']);
 Route::get('/indexAdmin', [AdminController::class, 'index']);
 Route::get('/indexAdmin/{name?}', [AdminController::class, 'show']);
 Route::post('/indexAdmin/{name?}', [AdminController::class, 'createProduct']);
@@ -38,9 +38,11 @@ Route::post('/indexAdmin/{name?}/{nameshow?}', [AdminController::class, 'update'
 
 Route::get('/', [MyController::class, 'index']);
 Route::get('/shop-product-list', [MyController::class, 'store']);
+Route::get('/logout', [MyController::class, 'logout']);
+
 Route::get('/name', 'MyController@store');
 Route::get('/{name?}/{id?}', [MyController::class, 'show']);
 Route::post('/shop-product-list', [MyController::class, 'filter']);
 
-
-
+Route::get('/shop-shopping-cart/{id?}/{quantity?}', [CartController::class, 'index']);
+Route::get('/shop-shopping-cart/delete/cart/{id?}', [CartController::class, 'deleteCart']);

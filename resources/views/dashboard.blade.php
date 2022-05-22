@@ -1,3 +1,7 @@
+<?php
+     header("Location: http://127.0.0.1:8000");
+     exit;
+?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

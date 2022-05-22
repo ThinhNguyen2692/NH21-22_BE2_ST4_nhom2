@@ -1,3 +1,19 @@
+
+<?php
+ if (session_id() === '')
+  session_start();
+  if(!isset($_SESSION['cart'])){
+    $_SESSION['cart'] = null;
+  }
+if(isset(Auth::user()->role_id)) {
+
+  if(Auth::user()->role_id == 1) {
+    header("Location: http://127.0.0.1:8000/indexAdmin");
+    exit;
+   }
+}
+?>
+
 <!DOCTYPE html>
 <!--
 Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
@@ -128,9 +144,14 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <div class="col-md-6 col-sm-6 additional-nav">
           <ul class="list-unstyled list-inline pull-right">
             <li><a href="/shop-account">My Account</a></li>
-            <li><a href="/shop-wishlist">My Wishlist</a></li>
-            <li><a href="/shop-checkout">Checkout</a></li>
-            <li><a href="/page-login">Log In</a></li>
+            <li><a href="{{url('/shop-shopping-cart/show')}}">My Wishlist</a></li>
+           
+            <?php if(isset(Auth::user()->role_id)) {?> <li><a href="{{ url('/logout')}}">Checkout</a></li>  <?php } ?>
+            <?php if(!isset(Auth::user()->role_id)) {?> <li><a href="{{ url('/login')}}">Log In</a></li>  <?php } ?>
+           
+          
+        
+           
           </ul>
         </div>
         <!-- END TOP BAR MENU -->
