@@ -11,7 +11,9 @@ if(isset(Auth::user()->role_id)) {
     header("Location: http://127.0.0.1:8000/indexAdmin");
     exit;
    }
+  
 }
+var_dump($_SESSION['cart']);
 ?>
 
 <!DOCTYPE html>

@@ -23,8 +23,8 @@
                     <th class="goods-page-price">Unit price</th>
                     <th class="goods-page-total" colspan="2">Total</th>
                   </tr>
-                  @if(isset($getCart))
-                  @foreach($getCart as $value)
+                  @if(isset($getBill))
+                  @foreach($getBill as $value)
                   <?php
                     if(isset(Auth::user()->id)){
                       $id = $value->id_product;
@@ -32,18 +32,9 @@
                       $image = $value->image;
                       $sale_price = $value->sale_price;
                       $price = $value->price;
-                      $quantity_cart = $value->quantity_cart;
+                      $quantity_bill = $value->quantity_bill;
                       $total_cart = $value->total_cart;
-                    }else{
-                      $id = $value['id'];
-                      $name = $value['product_name'];
-                      $image = $value['image'];
-                      $sale_price = $value['sale_price'];
-                      $price = $value['price'];
-                      $quantity_cart = $value['quantity_cart'];
-                      $total_cart = $value['total_cart'];
                     }
-                    
                   ?>
                   <tr>
                     <td class="goods-page-image">
@@ -58,9 +49,6 @@
                     <td class="goods-page-quantity">
                     <div >
                     <input style="text-align: center; width: 70px;" id="product-quantity" type="text" value="{{ $quantity_cart}}" readonly>
-                   <div> <a class="btn btn-default" href="{{url('/shop-shopping-cart/'. $id)}}/{{$quantity_cart+1}}"> <i class="fa fa-angle-up"></i></a>
-                    <a class="btn btn-default" href="{{url('/shop-shopping-cart/'. $id)}}/{{$quantity_cart-1}}"><i class="fa fa-angle-down"></i></a></div>
-                    </div>
                     </td>
                     <td class="goods-page-price">
                       <strong>{{number_format($price)}}</strong>
@@ -75,7 +63,7 @@
                   </tr>
                   <?php $totalAllCart  += $price * $quantity_cart; 
                         $totalAllSale += $total_cart;
-                      
+                        echo($total_cart);
                       ?>
                @endforeach
               

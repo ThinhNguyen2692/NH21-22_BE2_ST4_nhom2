@@ -8,6 +8,7 @@ use App\Http\Controllers\ShopIndexController;
 use App\Http\Controllers\ShopItemController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BillController;
 
 use App\Http\Controllers\CartController;
 /*
@@ -29,6 +30,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/shop-shopping-cart/show', [CartController::class, 'Show']);
+Route::post('/shop-shopping-cart/bill', [BillController::class, 'addBill']);
 Route::get('/indexAdmin', [AdminController::class, 'index']);
 Route::get('/indexAdmin/{name?}', [AdminController::class, 'show']);
 Route::post('/indexAdmin/{name?}', [AdminController::class, 'createProduct']);
@@ -46,3 +48,4 @@ Route::post('/shop-product-list', [MyController::class, 'filter']);
 
 Route::get('/shop-shopping-cart/{id?}/{quantity?}', [CartController::class, 'index']);
 Route::get('/shop-shopping-cart/delete/cart/{id?}', [CartController::class, 'deleteCart']);
+

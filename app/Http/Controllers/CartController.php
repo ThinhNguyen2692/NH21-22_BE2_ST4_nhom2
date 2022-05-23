@@ -33,6 +33,7 @@ class CartController extends Controller
                     ->join('product', 'cart.id_product', '=', 'product.id')
                     ->join('users', 'cart.id_user', '=', 'users.id')
                     ->select('cart.*', 'product.*', 'users.*')
+                    ->where('users.id', '=', Auth::user()->id)
                     ->get();
                     $manufactures = Manufactures::all();
                     $protype = Protype::all();
@@ -49,6 +50,7 @@ class CartController extends Controller
               ->join('product', 'cart.id_product', '=', 'product.id')
               ->join('users', 'cart.id_user', '=', 'users.id')
               ->select('cart.*', 'product.*', 'users.*')
+              ->where('users.id', '=', Auth::user()->id)
               ->get();
         }else{
             //luu vao session khi user khong dang nhap
@@ -62,14 +64,14 @@ class CartController extends Controller
                 'id' => $product->id,
                 'product_name' => $product->name,
                 'sale_price' => $product->sale_price,
-                'quantity_cart' => $quantity,
+                'quantity_cart' => (int) $quantity,
                 'image' =>  $product->image,
                 'price' =>  $product->price,
-                'total_cart' => $product->price-($product->price * ($product->sale_price/100)) * $quantity
+                'total_cart' => ($product->price-($product->price * ($product->sale_price/100))) * $quantity
              );
             } else{
-                $_SESSION['cart'][$id_product][ 'quantity_cart'] = $quantity;
-                $_SESSION['cart'][$id_product][ 'total_cart' ] = $product->price-($product->price * ($product->sale_price/100)) * $quantity;
+                $_SESSION['cart'][$id_product]['quantity_cart'] = (int) $quantity;
+                $_SESSION['cart'][$id_product]['total_cart'] = ($product->price - ($product->price * ($product->sale_price/100))) * (int) $quantity;
             } 
              $getCart = $_SESSION['cart'];
         }
@@ -93,7 +95,7 @@ class CartController extends Controller
             session_start();
             $getCart = $_SESSION['cart'];
         }
-    
+     
         $manufactures = Manufactures::all();
         $protype = Protype::all();
         return view('shop-shopping-cart')->with('getCart',$getCart)->with('protype', $protype)->with('manufactures', $manufactures);

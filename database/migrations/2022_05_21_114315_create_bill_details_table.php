@@ -17,9 +17,9 @@ class CreateBillDetailsTable extends Migration
             $table->id();
             $table->integer('id_bill');
             $table->string('id_product');
-            $table->integer('quantity');
-            $table->integer('sale');
+            $table->integer('quantity_bill');
             $table->integer('total');
+            $table->integer('payment');
             $table->timestamps();
         });
     }

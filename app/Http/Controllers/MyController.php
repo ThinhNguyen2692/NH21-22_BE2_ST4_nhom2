@@ -29,6 +29,7 @@ class MyController extends Controller
     //hiện thị danh sach san phâm và chi tiết sản phẩm
     public function show($name, $id)
     {       
+       
         $key = $id;
         $pieces = explode("_", $id);
         $product = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(3);
