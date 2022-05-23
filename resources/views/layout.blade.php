@@ -1,19 +1,11 @@
-
 <?php
  if (session_id() === '')
   session_start();
   if(!isset($_SESSION['cart'])){
     $_SESSION['cart'] = null;
   }
-if(isset(Auth::user()->role_id)) {
 
-  if(Auth::user()->role_id == 1) {
-    header("Location: http://127.0.0.1:8000/indexAdmin");
-    exit;
-   }
-  
-}
-var_dump($_SESSION['cart']);
+
 ?>
 
 <!DOCTYPE html>
@@ -305,7 +297,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     <div class="container">
       <div class="setCenter">
       @foreach($manufactures as $row)
-                      <a class="setImg"  href="/shop-product-list/{{ $row->id}}"><img title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a>
+                      <a class="setImg"  href="/shop-product-list/{{ $row->id}}"><img style="width: 70px; height: 70px;" title="esprit" alt="esprit" src="{{ asset('assets/pages/img/brands/'. $row->image . '') }}"></a>
      @endforeach
 
       </div>

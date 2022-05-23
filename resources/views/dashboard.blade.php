@@ -1,4 +1,10 @@
 <?php
+if(isset(Auth::user()->role_id)) {
+    if(Auth::user()->role_id == 1) {
+      header("Location: http://127.0.0.1:8000/indexAdmin");
+      exit;
+     }
+  }
      header("Location: http://127.0.0.1:8000");
      exit;
 ?>

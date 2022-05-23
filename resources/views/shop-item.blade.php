@@ -12,68 +12,32 @@
     <div class="row margin-bottom-40">
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar col-md-3 col-sm-5">
-        <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Ladies</a></li>
-          <li class="list-group-item clearfix dropdown active">
-            <a href="/shop-product-list" class="collapsed">
-              <i class="fa fa-angle-right"></i>
-              Mens
-
-            </a>
-            <ul class="dropdown-menu" style="display:block;">
-              <li class="list-group-item dropdown clearfix active">
-                <a href="/shop-product-list" class="collapsed"><i class="fa fa-angle-right"></i> Shoes </a>
-                <ul class="dropdown-menu" style="display:block;">
-                  <li class="list-group-item dropdown clearfix">
-                    <a href="/shop-product-list"><i class="fa fa-angle-right"></i> Classic </a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Classic 1</a></li>
-                      <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Classic 2</a></li>
-                    </ul>
-                  </li>
-                  <li class="list-group-item dropdown clearfix active">
-                    <a href="/shop-product-list" class="collapsed"><i class="fa fa-angle-right"></i> Sport </a>
-                    <ul class="dropdown-menu" style="display:block;">
-                      <li class="active"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Sport 1</a></li>
-                      <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Sport 2</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Trainers</a></li>
-              <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Jeans</a></li>
-              <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Chinos</a></li>
-              <li><a href="/shop-product-list"><i class="fa fa-angle-right"></i> T-Shirts</a></li>
-            </ul>
-          </li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Kids</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Accessories</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Sports</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Brands</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Electronics</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Home &amp; Garden</a></li>
-          <li class="list-group-item clearfix"><a href="/shop-product-list"><i class="fa fa-angle-right"></i> Custom Link</a></li>
-        </ul>
+       
 
         <div class="sidebar-products clearfix">
-          <h2>Bestsellers</h2>
+         
+          <h2 style="color: red;">___Sale Product</h2>
+          @foreach($productSale as $value)
           <div class="item">
-            <a href="/shop-item"><img src="assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="/shop-item">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$31.00</div>
+            <a href="/shop-item"><img src="{{ asset('assets/pages/img/products/'. $value->image . '') }}" alt="Some Shoes in Animal with Cut Out"></a>
+            <h3><a href="/shop-item">{{$value->name}}</a></h3>
+            <div class="price">{{$value->price}}</div>
+            <div class="sticker sticker-sale"></div>
           </div>
+          @endforeach
+        <h2 style="color: red;">Related Products</h2>
+        @foreach($productType as $value)
           <div class="item">
-            <a href="/shop-item"><img src="assets/pages/img/products/k4.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="/shop-item">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$23.00</div>
+            <a href="/shop-item"><img src="{{ asset('assets/pages/img/products/'. $value->image . '') }}" alt="Some Shoes in Animal with Cut Out"></a>
+            <h3><a href="/shop-item">{{$value->name}}</a></h3>
+            <div class="price">{{$value->price}}</div>
+            <div class="sticker sticker-sale"></div>
           </div>
-          <div class="item">
-            <a href="/shop-item"><img src="assets/pages/img/products/k3.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-            <h3><a href="/shop-item">Some Shoes in Animal with Cut Out</a></h3>
-            <div class="price">$86.00</div>
-          </div>
-        </div>
+          @endforeach
+        
       </div>
+      
+    </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN CONTENT -->
       <div class="col-md-9 col-sm-7">
@@ -81,7 +45,11 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <div class="product-main-image">
+                <?php
+                 $product_name = 0; $id_product = 0;
+                ?>
                 @foreach($data as $row)
+                <?php $product_name = $row->name; $id_product = $row->id;?>
                 <img src="{{ asset('assets/pages/img/products/'. $row->image . '') }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
               </div>
 
@@ -171,48 +139,55 @@
                     </tr>
                   </table>
                 </div>
+                <?php if ($row->sale_price != 0) {
+            ?>
+              <div class="sticker sticker-sale"></div>
+            <?php } ?>
+            @endforeach
                 <div class="tab-pane fade in active" id="Reviews">
                   <!--<p>There are no reviews for this product.</p>-->
+              
+               @if($getReview != null)
+                @foreach($getReview as $value)
                   <div class="review-item clearfix">
                     <div class="review-item-submitted">
-                      <strong>Bob</strong>
-                      <em>30/12/2013 - 07:37</em>
-                      <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                    </div>
-                    <div class="review-item-content">
-                      <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
-                    </div>
-                  </div>
-                  <div class="review-item clearfix">
-                    <div class="review-item-submitted">
-                      <strong>Mary</strong>
-                      <em>13/12/2013 - 17:49</em>
+                      <strong>{{$value->user_name}}</strong>
+                      <em>>{{$value->rating}}</em>
                       <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                     </div>
                     <div class="review-item-content">
-                      <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
+                      <p>{{$value->review_user}}</p>
                     </div>
                   </div>
-
+                  @endforeach
+      @endif
                   <!-- BEGIN FORM-->
-                  <form action="#" class="reviews-form" role="form">
-                    <h2>Write a review</h2>
+                  <form action="{{url('/shop-item/addReview/'.$id_product)}}"  method="post" class="reviews-form" role="form">
+                  @csrf
+                    <label><h2>Write a review</h2></label>
                     <div class="form-group">
                       <label for="name">Name <span class="require">*</span></label>
-                      <input type="text" class="form-control" id="name">
+                      <input type="text" class="form-control" name="name" value="<?php if(isset(Auth::user()->role_id)) echo Auth::user()->user_name?>" required id="name">
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="text" class="form-control" id="email">
+                      <input type="text" class="form-control" value="<?php if(isset(Auth::user()->role_id)) echo Auth::user()->email?>" name="email" id="email">
                     </div>
                     <div class="form-group">
                       <label for="review">Review <span class="require">*</span></label>
-                      <textarea class="form-control" rows="8" id="review"></textarea>
+                      <textarea class="form-control" rows="8" required name="review" id="review"></textarea>
                     </div>
                     <div class="form-group">
                       <label for="email">Rating</label>
-                      <input type="range" value="4" step="0.25" id="backing5">
-                      <div class="rateit" data-rateit-backingfld="#backing5" data-rateit-resetable="false" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
+                     <div>             
+                      <label style="margin-right: 10px;" class="" ><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Rất tệ">Rất tệ</label>
+                      <label style="margin-right: 10px;"  class="" ><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Tệ">Tệ</label>
+                      <label style="margin-right: 10px;"  class="" > <input checked="true" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Bình thường">Bình thường</label>
+                      <label style="margin-right: 10px;"  class="" ><input class="" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Tốt">Tốt</label>
+                      <label style="margin-right: 10px;"  class=""> <input class="" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Rất tốt<">Rất tốt</label>
+
+                     </div>
+                   
                       </div>
                     </div>
                     <div class="padding-top-20">
@@ -223,11 +198,7 @@
                 </div>
               </div>
             </div>
-            <?php if ($row->sale_price != 0) {
-            ?>
-              <div class="sticker sticker-sale"></div>
-            <?php } ?>
-            @endforeach
+          
           </div>
         </div>
       </div>
@@ -236,99 +207,7 @@
     <!-- END SIDEBAR & CONTENT -->
 
     <!-- BEGIN SIMILAR PRODUCTS -->
-    <div class="row margin-bottom-40">
-      <div class="col-md-12 col-sm-12">
-        <h2>Most popular products</h2>
-        <div class="owl-carousel owl-carousel4">
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-new"></div>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress2</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress3</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress4</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-              <div class="sticker sticker-sale"></div>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress5</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-          <div>
-            <div class="product-item">
-              <div class="pi-img-wrapper">
-                <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                <div>
-                  <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                  <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                </div>
-              </div>
-              <h3><a href="/shop-item">Berry Lace Dress6</a></h3>
-              <div class="pi-price">$29.00</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <!-- END SIMILAR PRODUCTS -->
   </div>
 </div>

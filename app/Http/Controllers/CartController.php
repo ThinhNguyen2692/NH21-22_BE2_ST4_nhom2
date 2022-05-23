@@ -27,8 +27,14 @@ class CartController extends Controller
             foreach ($cart as $row) {
               //kiem tra san pham co trong cart hay chua
                 if($row->id_product == $id){
-                    //update khi san pham da cot trong cart
-                    DB::update('update cart set quantity_cart = ?, total_cart = ? where id_product = ?', [$quantity,$total,$row->id_product]);
+                    if($quantity <= $product->quantity){
+                        DB::update('update cart set quantity_cart = ?, total_cart = ? where id_product = ?', [$quantity,$total,$row->id_product]);
+                       
+                    }else{
+                        $message = "So luong san pham khong du voi so luong mua cua quy khach";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                    }
+                    //update khi san pham da co trong cart
                     $getCart = DB::table('cart')
                     ->join('product', 'cart.id_product', '=', 'product.id')
                     ->join('users', 'cart.id_user', '=', 'users.id')
@@ -70,15 +76,22 @@ class CartController extends Controller
                 'total_cart' => ($product->price-($product->price * ($product->sale_price/100))) * $quantity
              );
             } else{
-                $_SESSION['cart'][$id_product]['quantity_cart'] = (int) $quantity;
+                if($quantity <= $product->quantity){
+                    $_SESSION['cart'][$id_product]['quantity_cart'] = (int) $quantity;
                 $_SESSION['cart'][$id_product]['total_cart'] = ($product->price - ($product->price * ($product->sale_price/100))) * (int) $quantity;
+                }else{
+                    $message = "So luong san pham khong du voi so luong mua cua quy khach";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+                
             } 
+           
              $getCart = $_SESSION['cart'];
         }
         $manufactures = Manufactures::all();
         $protype = Protype::all();
-       
-            return view('shop-shopping-cart')->with('getCart',$getCart)->with('protype', $protype)->with('manufactures', $manufactures);
+      
+        return view('shop-shopping-cart')->with('getCart',$getCart)->with('protype', $protype)->with('manufactures', $manufactures);
     }
     //hien thi cart
     public function show(){

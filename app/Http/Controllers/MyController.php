@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Manufactures;
 use App\Models\Protype;
+use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,7 @@ class MyController extends Controller
        
         $key = $id;
         $pieces = explode("_", $id);
+        $getReview = null;
         $product = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(3);
         $products = Product::where('type_id', '=', $id)->where('status', '=', 1)->paginate(3);
         //lấy sản phẩm theo type
@@ -46,11 +48,18 @@ class MyController extends Controller
             //lấy chi tiết sản phẩm
             $id = $pieces[1];
             $product = Product::where('id', '=', $id)->get();
-
+          
+           
+            $getReview  = Review::where('id_product', '=', $id)->get();
+            
         }
+        $typeid = 0;
+        foreach($product as $value){$typeid = $value->type_id ;}
+        $productType = Product::where('type_id', '=', $typeid)->orderBy('id', 'DESC')->LIMIT(5)->get();
+        $productSale = Product::where('sale_price', '!=', 0)->where( 'status', '=', 1)->where( 'quantity', '>', 0)->orderBy('id', 'DESC')->LIMIT(3)->get();
         $manufactures = Manufactures::all();
         $protype = Protype::all();
-        return view($name)->with('data', $product) ->with('datas', $products)->with('manufactures', $manufactures)->with('protype', $protype)->with('key', $key);
+        return view($name)->with('data', $product)->with('productType',$productType )->with('productSale',$productSale )->with('getReview',$getReview ) ->with('datas', $products)->with('manufactures', $manufactures)->with('protype', $protype)->with('key', $key);
     }
 
 

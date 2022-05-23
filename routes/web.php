@@ -9,6 +9,7 @@ use App\Http\Controllers\ShopItemController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\ReviewController;
 
 use App\Http\Controllers\CartController;
 /*
@@ -37,6 +38,8 @@ Route::post('/indexAdmin/{name?}', [AdminController::class, 'createProduct']);
 Route::get('/indexAdmin/{name?}/{id?}', [AdminController::class, 'destroy']);
 Route::get('/indexAdmin/{name?}/{nameshow?}/{id?}', [AdminController::class, 'edit']);
 Route::post('/indexAdmin/{name?}/{nameshow?}', [AdminController::class, 'update']);
+
+Route::post('/shop-item/addReview/{id?}', [ReviewController::class, 'addReview']);
 
 Route::get('/', [MyController::class, 'index']);
 Route::get('/shop-product-list', [MyController::class, 'store']);

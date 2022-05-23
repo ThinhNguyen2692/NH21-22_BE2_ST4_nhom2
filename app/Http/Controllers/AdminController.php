@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         //trả về số lượng  trong bảng sản phẩm đang bán
 
-        $soLuongProducts = DB::select('select Count(id)  as `soluong` from product where status = ?', [1]);
+        $soLuongProducts = DB::select('select Count(id)  as `soluong` from product');
         //trả về số lượng  trong bảng Bill
         $soLuongBill = DB::select('select Count(id)  as `soluong`  from bill');
         //trả về số lượng trong bang san phẩm đang sale

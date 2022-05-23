@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bill;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 
 class BillController extends Controller
 {
     public function addBill(Request $request){
         $email = $request->post('email');
         $address = $request->post('address');
+        $bill_id = 0;
         if(isset(Auth::user()->id)){
         
          DB::table('bill')->insert([
@@ -44,6 +47,7 @@ class BillController extends Controller
               ]);
               $total += $value->price * $value->quantity_cart;
               $payment +=  $value->total_cart;
+              DB::update('update product set quantity = quantity - ? where id = ?', [ $value->quantity_cart,$value->id_product]);
           }
           //cap nhat bill
           DB::update('update bill set total = ?, payment = ? where id = ?', [$total,$payment,$bill_id]);
@@ -61,11 +65,9 @@ class BillController extends Controller
               foreach($billnew as $value){
                    $bill_id = $value->id;
               }
-             
               if (session_id() === '')
               session_start();
                 // so tien phai thanh toan
-
                 $payment = 0;
                 //tông tien cua don hang
                 $total = 0;
@@ -86,16 +88,30 @@ class BillController extends Controller
         }
         $manufactures = Manufactures::all();
         $protype = Protype::all();
+        //Gui mail
+        $getBillDetail = DB::table('bill_details')
+        ->join('product', 'bill_details.id_product', '=', 'product.id')
+        ->select('product.*', 'bill_details.*')
+        ->where('bill_details.id_bill', '=', $bill_id)
+        ->get();
+        
+        $data = [
+          'title'=>"Hóa đơn mua hàng",
+          'address'=>$address,
+          'datas' => $getBillDetail
+      ];
+        Mail::to($email)->send(new SendMail($data));
        return view('shop-shopping-cart')->with('protype', $protype)->with('manufactures', $manufactures);
     }
+
+
+
     public function history(){
-        $getBill = DB::table('bill')
-        ->join('bill_details', 'bill.id', '=', 'bill_details.id_bill')
-        ->join('product', 'bill_details.id_product', '=', 'product.id')
-        ->join('users', 'bill.id_user', '=', 'users.id')
-        ->select('bill.*', 'product.*', 'users.*', 'bill_details.*')
-        ->where('users.id', '=', Auth::user()->id)
-        ->get();
+      $getBillDetail = DB::table('bill_details')
+      ->join('product', 'bill_details.id_product', '=', 'product.id')
+      ->select('product.*', 'bill_details.*')
+      ->where('bill_details.id_bill', '=', $bill_id)
+      ->get();
         $manufactures = Manufactures::all();
         $protype = Protype::all();
         return view('shop-history')->with('getBill', $getBill)->with('protype', $protype)->with('manufactures', $manufactures);

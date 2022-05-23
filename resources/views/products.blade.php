@@ -16,15 +16,6 @@
                               Add
                           </a>
                           <br>
-                          <form action="{{ url('shop-product-list')}}" method="get">
-              @csrf
-                <div class="input-group">
-                  <input name="keyword" type="text" placeholder="Search" class="form-control">
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                  </span>
-                </div>
-              </form>
           </div>
          
           <div class="col-sm-6">
