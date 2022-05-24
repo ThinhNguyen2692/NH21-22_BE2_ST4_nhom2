@@ -10,6 +10,7 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\CartController;
 /*
@@ -30,6 +31,12 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+
+Route::get('indexAdmin/bill', [BillController::class, 'admimBill']);
+Route::post('indexAdmin/udateUser', [UserController::class, 'updateUser']);
+Route::get('indexAdmin/editUser/{id?}', [UserController::class, 'editUser']);
+Route::get('indexAdmin/delete/{id?}', [UserController::class, 'delete']);
+Route::post('/indexAdmin/addUser', [UserController::class, 'create']);
 Route::get('/shop-shopping-cart/show', [CartController::class, 'Show']);
 Route::post('/shop-shopping-cart/bill', [BillController::class, 'addBill']);
 Route::get('/indexAdmin', [AdminController::class, 'index']);

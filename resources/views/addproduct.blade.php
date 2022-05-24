@@ -24,11 +24,11 @@
   <!-- Main content -->
   <section class="content">
 
-    <form action="{{ url('indexAdmin/addproduct')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ url('indexAdmin/addproduct')}}" method="post" enctype="multipart/form-data" id="form-add-product">
     @csrf
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">General</h3>
+          <h3 class="card-title">Product</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -69,7 +69,7 @@
 
           <div class="form-group">
             <label for="inputProjectLeader">Price</label>
-            <input type="text" id="inputProjectLeader" class="form-control" name="price">
+            <input type="text" id="price" class="form-control" name="price">
           </div>
           <div class="form-group">
             <label for="inputProjectLeader">Chip</label>
@@ -101,7 +101,7 @@
             </div>
           <div class="form-group">
             <label for="inputProjectLeader">Quantity</label>
-            <input type="text" id="inputProjectLeader" class="form-control" name="quantity">
+            <input type="text" id="quantity" class="form-control" name="quantity">
           </div>
           <div class="form-group">
             <label for="inputProjectLeader">Operating system</label>

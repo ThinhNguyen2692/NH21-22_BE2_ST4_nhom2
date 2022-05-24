@@ -242,6 +242,18 @@ if(isset(Auth::user()->role_id)) {
                   <p>Manufactures</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('indexAdmin/user')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('indexAdmin/bill')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bill</p>
+                </a>
+              </li>
         
       
         </ul>
@@ -304,6 +316,7 @@ if(isset(Auth::user()->role_id)) {
 <script src="{{ asset('admin/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admin/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{ asset('assets/pages/scripts/sitescripts.js')}}"></script>
 </body>
 </html>
 

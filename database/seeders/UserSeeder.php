@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'id' => 0,
             'name' => 'Customer',
             'email' => '',
             'role_id' => "0",

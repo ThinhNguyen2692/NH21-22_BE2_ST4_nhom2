@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Manufactures;
 use App\Models\Protype;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -54,20 +55,33 @@ class AdminController extends Controller
             $img = $request->image;
             $Location = "..\public\assets\pages\img\products";
             $imageName = $img->getClientOriginalName();
-            $img->move($Location, $img->getClientOriginalName());
-            DB::table('product')->insert([
-                ['name' => $name, 'sale_price' => 0, 'manu_id' => $manu_id, 'type_id' => $type_id, 'price' => $price, 'image' => $imageName, 'description' => $desc, 'feature' => $feature, 'quantity' => $quantity, 'status' => 1, 'Ram' => $ram, 'Capacity' => $Capacity, 'HDH' => $HDH, 'chip' => $chip, 'origin' => $origin]
-            ]);
+            if(@is_array(getimagesize($Location.$imageName))){
+                $img->move($Location, $img->getClientOriginalName());
+
+                DB::table('product')->insert([
+                    ['name' => $name, 'sale_price' => 0, 'manu_id' => $manu_id, 'type_id' => $type_id, 'price' => $price, 'image' => $imageName, 'description' => $desc, 'feature' => $feature, 'quantity' => $quantity, 'status' => 1, 'Ram' => $ram, 'Capacity' => $Capacity, 'HDH' => $HDH, 'chip' => $chip, 'origin' => $origin]
+                ]);
+            } else {
+                $message = "Lỗi chọn không phải ảnh";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+          
         } elseif ($nameShow == 'addManu') {
             $name = $request->post('name');
             $request->hasFile('image');
             $img = $request->image;
             $Location = "..\public\assets\pages\img\brands";
             $imageName = $img->getClientOriginalName();
-            $img->move($Location, $img->getClientOriginalName());
+            if(@is_array(getimagesize($Location.$imageName))){
+                $img->move($Location, $img->getClientOriginalName());
             DB::table('manufactures')->insert([
               ['manu_name'=>$name, 'image'=>$imageName]
             ]);
+            } else {
+                $message = "Lỗi chọn không phải ảnh";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+           
         }else {
             $name = $request->post('name');
             DB::table('protypes')->insert([
@@ -120,13 +134,15 @@ class AdminController extends Controller
             ->get();
 
         $protypes = Protype::all();
+        $getUser = User::where('id','!=', 1)->get();
 
 
         //
 
         return view($name)->with('getProducts', $products)
             ->with('getProtypes', $protypes)
-            ->with('getManufactures', $manufactures);
+            ->with('getManufactures', $manufactures)
+            ->with('getUser', $getUser);
     }
 
     /**
@@ -247,12 +263,40 @@ class AdminController extends Controller
     {
     
         if ($nameShow == 'products') {
-          
-            DB::delete('delete from product where id = ? ',[$id]);
+            $soLuong = DB::select('select Count(id_product)  as `soluong` from bill_details where id_product = ?',[$id]);
+            $soluongCheck = 0;
+            foreach ($soLuong as $value) {
+                $soluongCheck = $value->soluong;
+            }
+            if($soluongCheck == 0) DB::delete('delete from product where id = ? ',[$id]);
+            else{
+                $message = "Sản phẩm này  hiện tại không thể xóa";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+            }
         } elseif ($nameShow == 'manu') {
-            DB::delete('delete from manufactures where id = ? ',[$id]);
+            $soLuong = DB::select('select Count(manu_id)  as `soluong` from product where manu_id = ?',[$id]);
+            $soluongCheck = 0;
+            foreach ($soLuong as $value) {
+                $soluongCheck = $value->soluong;
+            }
+            if($soluongCheck == 0)DB::delete('delete from manufactures where id = ? ',[$id]);
+            else{
+                $message = "Thương hiệu này hiện tại không thể xóa";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            
         }else {
-            DB::delete('delete from protypes where id = ? ',[$id]);
+            $soLuong = DB::select('select Count(type_id)  as `soluong` from product where type_id = ?',[$id]);
+            $soluongCheck = 0;
+            foreach ($soLuong as $value) {
+                $soluongCheck = $value->soluong;
+            }
+            if($soluongCheck == 0)DB::delete('delete from protypes where id = ? ',[$id]);
+            else{
+                $message = "Loại sản phẩm này hiện tại không thể xóa";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            
         }
         $manufactures = Manufactures::all();
         $products = DB::table('product')

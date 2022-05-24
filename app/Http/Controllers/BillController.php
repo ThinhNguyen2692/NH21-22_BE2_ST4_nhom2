@@ -58,7 +58,7 @@ class BillController extends Controller
               session_start();
             var_dump($_SESSION['cart']);
             DB::table('bill')->insert([
-                ['id_user'=>0, 'address'=>$address, 'total'=>0, 'payment'=>0]
+                ['id_user'=>1, 'address'=>$address, 'total'=>0, 'payment'=>0]
               ]);
               //lay id bill vua tao
               $billnew = Bill::where('total','=',0)->get(); 
@@ -115,5 +115,19 @@ class BillController extends Controller
         $manufactures = Manufactures::all();
         $protype = Protype::all();
         return view('shop-history')->with('getBill', $getBill)->with('protype', $protype)->with('manufactures', $manufactures);
+    }
+
+    public function admimBill(){
+      $getBillAll = DB::table('bill')->join('Users', 'bill.id_user', '=', 'users.id')->get();;
+      return view('Bill')->with('getBillAll', $getBillAll);
+    }
+    
+    public function admimBilldetail(){
+      $getBillAll = Bill::all();
+      $getBillDetail = DB::table('bill_details')
+      ->join('product', 'bill_details.id_product', '=', 'product.id')
+      ->select('product.*', 'bill_details.*')
+      ->get();
+      
     }
 }
