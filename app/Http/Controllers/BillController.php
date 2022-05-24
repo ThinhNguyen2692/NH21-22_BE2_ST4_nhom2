@@ -89,19 +89,19 @@ class BillController extends Controller
         }
         $manufactures = Manufactures::all();
         $protype = Protype::all();
-      //   //Gui mail
-      //   $getBillDetail = DB::table('bill_details')  
-      //   ->join('product', 'bill_details.id_product', '=', 'product.id')
-      //   ->select('product.*', 'bill_details.*')
-      //   ->where('bill_details.id_bill', '=', $bill_id)
-      //   ->get();
+        //Gui mail
+        $getBillDetail = DB::table('bill_details')  
+        ->join('product', 'bill_details.id_product', '=', 'product.id')
+        ->select('product.*', 'bill_details.*')
+        ->where('bill_details.id_bill', '=', $bill_id)
+        ->get();
         
-      //   $data = [
-      //     'title'=>"Hóa đơn mua hàng",
-      //     'address'=>$address,
-      //     'datas' => $getBillDetail
-      // ];
-      //   Mail::to($email)->send(new SendMail($data));
+        $data = [
+          'title'=>"Hóa đơn mua hàng",
+          'address'=>$address,
+          'datas' => $getBillDetail
+      ];
+        Mail::to($email)->send(new SendMail($data));
        return view('shop-shopping-cart')->with('protype', $protype)->with('manufactures', $manufactures);
     }
 
