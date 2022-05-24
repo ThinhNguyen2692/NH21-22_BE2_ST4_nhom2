@@ -118,16 +118,21 @@ class BillController extends Controller
     }
 
     public function admimBill(){
-      $getBillAll = DB::table('bill')->join('Users', 'bill.id_user', '=', 'users.id')->get();;
+      $getBillAll = DB::table('bill')->join('Users', 'bill.id_user', '=', 'users.id')->select('bill.id as id_bill','bill.id_user','bill.address','bill.total','bill.payment','users.*')->get();
       return view('Bill')->with('getBillAll', $getBillAll);
     }
     
     public function admimBilldetail(){
-      $getBillAll = Bill::all();
       $getBillDetail = DB::table('bill_details')
       ->join('product', 'bill_details.id_product', '=', 'product.id')
       ->select('product.*', 'bill_details.*')
       ->get();
-      
+      return view('billDetail')->with('getBillDetail', $getBillDetail);
+    }
+    public function admimBilldelete($id){
+      DB::delete('delete from bill where id = ?', [$id]);
+      DB::delete('delete from bill_details where id_bill = ?', [$id]);
+      $getBillAll = DB::table('bill')->join('Users', 'bill.id_user', '=', 'users.id')->select('bill.id as id_bill','bill.id_user','bill.address','bill.total','bill.payment','users.*')->get();
+      return view('Bill')->with('getBillAll', $getBillAll);
     }
 }

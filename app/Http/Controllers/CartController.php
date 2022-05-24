@@ -133,6 +133,24 @@ class CartController extends Controller
         $protype = Protype::all();
         return view('shop-shopping-cart')->with('getCart',$getCart)->with('protype', $protype)->with('manufactures', $manufactures);
     }
-
+    public function deleteCartAdmin($id){
+           
+            DB::delete('delete from cart where id = ?', [$id]);
+            $getCart = DB::table('cart')
+            ->join('product', 'cart.id_product', '=', 'product.id')
+            ->join('users', 'cart.id_user', '=', 'users.id')
+            ->select('cart.*', 'product.*', 'users.*')
+            ->get();
+            echo "ewiajuifes";
+       return view('cart')->with('getCart',$getCart);
+    }
+    public function showCartAdmin(){
+        $getCart = DB::table('cart')
+        ->join('product', 'cart.id_product', '=', 'product.id')
+        ->join('users', 'cart.id_user', '=', 'users.id')
+        ->select('cart.id as id_cart','cart.id_product','cart.id_user','cart.quantity_cart','cart.total_cart', 'product.*', 'users.*')
+        ->get();
+    return view('cart')->with('getCart',$getCart);
+}
   
 }

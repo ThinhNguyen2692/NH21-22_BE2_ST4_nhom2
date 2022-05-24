@@ -7,13 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bill</h1>
+            <h1>Cart</h1>
             <br>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">Cart</li>
             </ol>
           </div>
         </div>
@@ -25,7 +25,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Bill</h3>
+          <h3 class="card-title">Cart</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -44,16 +44,16 @@
                           ID
                       </th>
                       <th class="text-center">
-                        User Name
+                        Product name
                       </th>
                       <th  class="text-center">
-                         Address
+                        User name
+                      </th>
+                      <th  class="text-center">
+                         Quantity
                       </th>
                       <th  class="text-center">
                          Total
-                      </th>
-                      <th class="text-center">
-                         Paymnet
                       </th>
                       <th style="width: 20%" class="text-center">
                          Action
@@ -61,32 +61,31 @@
                   </tr>
               </thead>
               <tbody>
-              @foreach($getBillAll as $row)
+              @foreach($getCart as $row)
                   <tr>
                  
                       <td class="text-center">
-                         {{$row->id_bill}}
+                      {{$row->id_cart}}
+                      </td>
+                      <td class="text-center">
+                      {{$row->name}}
                       </td>
                       <td class="text-center">
                       {{$row->user_name}}
                       </td>
                       <td class="text-center">
-                      {{$row->address}}
+                      {{$row->quantity_cart}}
                       </td>
                       <td class="text-center">
-                      {{$row->total}}
-                      </td>
-                      <td class="text-center">
-                      {{$row->payment}}
+                      {{$row->total_cart}}
                       </td>
                       <td class="project-actions text-center" >
-                          <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/admimBilldelete/'. $row->id_bill.'')}}">
+                          <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/deleteCartAdmin/'. $row->id_cart. '')}}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a>
-                      </td>
-                    
+                      </td>                    
                   </tr>
                   @endforeach
            

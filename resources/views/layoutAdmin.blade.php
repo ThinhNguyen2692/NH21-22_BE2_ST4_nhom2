@@ -254,6 +254,18 @@ if(isset(Auth::user()->role_id)) {
                   <p>Bill</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('indexAdmin/billDetails')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bill Details</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('indexAdmin/showCartAdmin')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cart</p>
+                </a>
+              </li>
         
       
         </ul>

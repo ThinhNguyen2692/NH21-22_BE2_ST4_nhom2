@@ -32,6 +32,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('indexAdmin/admimBilldelete/{id?}', [BillController::class, 'admimBilldelete']);
+Route::get('indexAdmin/deleteCartAdmin/{id?}', [CartController::class, 'deleteCartAdmin']);
+Route::get('indexAdmin/showCartAdmin', [CartController::class, 'showCartAdmin']);
+Route::get('indexAdmin/billDetails', [BillController::class, 'admimBilldetail']);
 Route::get('indexAdmin/bill', [BillController::class, 'admimBill']);
 Route::post('indexAdmin/udateUser', [UserController::class, 'updateUser']);
 Route::get('indexAdmin/editUser/{id?}', [UserController::class, 'editUser']);

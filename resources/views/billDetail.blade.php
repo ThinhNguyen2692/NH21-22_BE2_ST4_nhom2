@@ -44,10 +44,13 @@
                           ID
                       </th>
                       <th class="text-center">
-                        User Name
+                        ID bill
                       </th>
                       <th  class="text-center">
-                         Address
+                         Product name
+                      </th>
+                      <th  class="text-center">
+                         Quantity
                       </th>
                       <th  class="text-center">
                          Total
@@ -55,23 +58,24 @@
                       <th class="text-center">
                          Paymnet
                       </th>
-                      <th style="width: 20%" class="text-center">
-                         Action
-                      </th>
+                  
                   </tr>
               </thead>
               <tbody>
-              @foreach($getBillAll as $row)
+              @foreach($getBillDetail as $row)
                   <tr>
                  
                       <td class="text-center">
-                         {{$row->id_bill}}
+                         {{$row->id}}
                       </td>
                       <td class="text-center">
-                      {{$row->user_name}}
+                      {{$row->id_bill}}
                       </td>
                       <td class="text-center">
-                      {{$row->address}}
+                      {{$row->name}}
+                      </td>
+                      <td class="text-center">
+                      {{$row->quantity_bill}}
                       </td>
                       <td class="text-center">
                       {{$row->total}}
@@ -79,13 +83,7 @@
                       <td class="text-center">
                       {{$row->payment}}
                       </td>
-                      <td class="project-actions text-center" >
-                          <a class="btn btn-danger btn-sm" href="{{url('indexAdmin/admimBilldelete/'. $row->id_bill.'')}}">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
+                   
                     
                   </tr>
                   @endforeach
