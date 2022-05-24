@@ -137,10 +137,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <!-- BEGIN TOP BAR MENU -->
         <div class="col-md-6 col-sm-6 additional-nav">
           <ul class="list-unstyled list-inline pull-right">
-            <li><a href="/shop-account">My Account</a></li>
-            <li><a href="{{url('/shop-shopping-cart/show')}}">My Wishlist</a></li>
+          <?php if(isset(Auth::user()->role_id)) {?> <li><a href="{{url('/shop-history/show')}}">Shop history</a></li>  <?php } ?>
+            <li><a href="{{url('/shop-shopping-cart/show')}}">Shop cart</a></li>
+            <li><a href="{{ url('/register')}}">Register</a></li>
            
-            <?php if(isset(Auth::user()->role_id)) {?> <li><a href="{{ url('/logout')}}">Checkout</a></li>  <?php } ?>
+            <?php if(isset(Auth::user()->role_id)) {?> <li><a href="{{ url('/logout')}}">Logout</a></li>  <?php } ?>
             <?php if(!isset(Auth::user()->role_id)) {?> <li><a href="{{ url('/login')}}">Log In</a></li>  <?php } ?>
            
           
@@ -162,80 +163,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
       <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
       <!-- BEGIN CART -->
-      <div class="top-cart-block">
-        <div class="top-cart-info">
-          <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-          <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
-        </div>
-        <i class="fa fa-shopping-cart"></i>
-
-        <div class="top-cart-content-wrapper">
-          <div class="top-cart-content">
-            <ul class="scroller" style="height: 250px;">
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="/shop-item"><img src="assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="/shop-item">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-            </ul>
-            <div class="text-right">
-              <a href="/shop-shopping-cart" class="btn btn-default">View Cart</a>
-              <a href="/shop-checkout" class="btn btn-primary">Checkout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+   
       <!--END CART -->
 
       <!-- BEGIN NAVIGATION -->
@@ -432,11 +360,11 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
         <!-- BEGIN PAYMENTS -->
         <div class="col-md-4 col-sm-4">
           <ul class="list-unstyled list-inline pull-right">
-            <li><img src="assets/corporate/img/payments/western-union.jpg" alt="We accept Western Union" title="We accept Western Union"></li>
-            <li><img src="assets/corporate/img/payments/american-express.jpg" alt="We accept American Express" title="We accept American Express"></li>
-            <li><img src="assets/corporate/img/payments/MasterCard.jpg" alt="We accept MasterCard" title="We accept MasterCard"></li>
-            <li><img src="assets/corporate/img/payments/PayPal.jpg" alt="We accept PayPal" title="We accept PayPal"></li>
-            <li><img src="assets/corporate/img/payments/visa.jpg" alt="We accept Visa" title="We accept Visa"></li>
+            <li><img src="{{asset('assets/corporate/img/payments/western-union.jpg')}}" alt="We accept Western Union" title="We accept Western Union"></li>
+            <li><img src="{{asset('assets/corporate/img/payments/american-express.jpg')}}" alt="We accept American Express" title="We accept American Express"></li>
+            <li><img src="{{asset('assets/corporate/img/payments/MasterCard.jpg')}}" alt="We accept MasterCard" title="We accept MasterCard"></li>
+            <li><img src="{{asset('assets/corporate/img/payments/PayPal.jpg')}}" alt="We accept PayPal" title="We accept PayPal"></li>
+            <li><img src="{{asset('assets/corporate/img/payments/visa.jpg')}}" alt="We accept Visa" title="We accept Visa"></li>
           </ul>
         </div>
         <!-- END PAYMENTS -->
@@ -456,12 +384,12 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-3">
           <div class="product-main-image">
-            <img src="assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive">
+            <img src="{{asset('assets/pages/img/products/model7.jpg')}}" alt="Cool green dress with red bell" class="img-responsive">
           </div>
           <div class="product-other-images">
-            <a href="javascript:;" class="active"><img alt="Berry Lace Dress" src="assets/pages/img/products/model3.jpg"></a>
-            <a href="javascript:;"><img alt="Berry Lace Dress" src="assets/pages/img/products/model4.jpg"></a>
-            <a href="javascript:;"><img alt="Berry Lace Dress" src="assets/pages/img/products/model5.jpg"></a>
+            <a href="javascript:;" class="active"><img alt="Berry Lace Dress" src="{{asset('assets/pages/img/products/model3.jpg')}}"></a>
+            <a href="javascript:;"><img alt="Berry Lace Dress" src="{{asset('assets/pages/img/products/model4.jpg')}}"></a>
+            <a href="javascript:;"><img alt="Berry Lace Dress" src="{{asset('assets/pages/img/products/model5.jpg')}}"></a>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-9">

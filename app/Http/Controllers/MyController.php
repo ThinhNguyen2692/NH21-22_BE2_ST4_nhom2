@@ -17,13 +17,12 @@ class MyController extends Controller
       
         //truy vấn có điều kiện
             $productSale = Product::where('sale_price', '!=', 0)->where( 'status', '=', 1)->where( 'quantity', '>', 0)->orderBy('id', 'DESC')->get();
-            //lấy 10 sp
+            //lấy 10 sp moi
             $productsNew = Product::orderBy('id', 'DESC')->where( 'status', '=', 1)->where( 'quantity', '>', 0)->LIMIT(10)->get();
-            //truy vấn có điều kiện
+            //lay san pham noi bat
             $productsfeature = Product::where('feature', '=', 1)->where( 'status', '=', 1)->where( 'quantity', '>', 0)->orderBy('id', 'DESC')->LIMIT(10)->get();
             $manufactures = Manufactures::all();
             $protype = Protype::all();
-            //truy vấn lấy 1 sp  
             return view('shop-index')->with('protype', $protype)->with('manufactures', $manufactures) ->with('dataNew', $productsNew) ->with('datafeature', $productsfeature) ->with('productSale', $productSale);
     }
 
@@ -48,10 +47,7 @@ class MyController extends Controller
             //lấy chi tiết sản phẩm
             $id = $pieces[1];
             $product = Product::where('id', '=', $id)->get();
-          
-           
             $getReview  = Review::where('id_product', '=', $id)->get();
-            
         }
         $typeid = 0;
         foreach($product as $value){$typeid = $value->type_id ;}
@@ -69,7 +65,7 @@ class MyController extends Controller
         $manufactures = Manufactures::all();
         $protype = Protype::all();
        $keyword =$request->get('keyword');
-      $products = Product::where('name', 'like', "%$keyword%")->where('status', '=', 1)->take(30)->paginate(6)->appends(['keyword' => $keyword]);
+      $products = Product::where('name', 'like', "%$keyword%")->take(30)->paginate(6)->appends(['keyword' => $keyword]);
         return view('shop-product-list')->with('datas', $products)->with('manufactures', $manufactures)->with('keyword', $keyword)->with('protype', $protype);
     }
     

@@ -42,7 +42,7 @@ class BillController extends Controller
           //tông tien cua don hang
           $total = 0;
           foreach($cart as $value){
-            DB::table('bill_details')->insert([
+            DB::table('bill_details')->insert([ 
                 ['id_bill'=>$bill_id, 'id_product'=>$value->id_product, 'quantity_bill'=>$value->quantity_cart, 'payment'=>$value->total_cart, 'total'=>$value->price * $value->quantity_cart]
               ]);
               $total += $value->price * $value->quantity_cart;
@@ -72,7 +72,7 @@ class BillController extends Controller
                 //tông tien cua don hang
                 $total = 0;
               foreach($_SESSION['cart'] as $value){
-                  var_dump($value);
+                  
                    $payment = 0;
           //tông tien cua don hang
           $total = 0;
@@ -80,6 +80,7 @@ class BillController extends Controller
                     
                     ['id_bill'=>$bill_id, 'id_product'=>$value['id'], 'quantity_bill'=>$value['quantity_cart'], 'payment'=>$value['total_cart'], 'total'=>$value['price'] * $value['quantity_cart']]
                   ]);
+                  DB::update('update product set quantity = quantity - ? where id = ?', [ $value['quantity_cart'],$value['id']]);
                   $total += $value['price'] * $value['quantity_cart'];
                   $payment +=  $value['total_cart'];
               }
@@ -88,30 +89,26 @@ class BillController extends Controller
         }
         $manufactures = Manufactures::all();
         $protype = Protype::all();
-        //Gui mail
-        $getBillDetail = DB::table('bill_details')
-        ->join('product', 'bill_details.id_product', '=', 'product.id')
-        ->select('product.*', 'bill_details.*')
-        ->where('bill_details.id_bill', '=', $bill_id)
-        ->get();
+      //   //Gui mail
+      //   $getBillDetail = DB::table('bill_details')  
+      //   ->join('product', 'bill_details.id_product', '=', 'product.id')
+      //   ->select('product.*', 'bill_details.*')
+      //   ->where('bill_details.id_bill', '=', $bill_id)
+      //   ->get();
         
-        $data = [
-          'title'=>"Hóa đơn mua hàng",
-          'address'=>$address,
-          'datas' => $getBillDetail
-      ];
-        Mail::to($email)->send(new SendMail($data));
+      //   $data = [
+      //     'title'=>"Hóa đơn mua hàng",
+      //     'address'=>$address,
+      //     'datas' => $getBillDetail
+      // ];
+      //   Mail::to($email)->send(new SendMail($data));
        return view('shop-shopping-cart')->with('protype', $protype)->with('manufactures', $manufactures);
     }
 
 
 
     public function history(){
-      $getBillDetail = DB::table('bill_details')
-      ->join('product', 'bill_details.id_product', '=', 'product.id')
-      ->select('product.*', 'bill_details.*')
-      ->where('bill_details.id_bill', '=', $bill_id)
-      ->get();
+      $getBill = DB::select('SELECT bill.id, bill.id_user, bill_details.id_product, bill_details.total AS `total_bill`, bill_details.quantity_bill , product.name, product.image, product.sale_price, product.price, bill_details.payment AS `payment_bill` FROM `bill_details` INNER JOIN `bill` ON `bill_details`.`id_bill` = `bill`.`id` INNER JOIN `product` ON `bill_details`.`id_product` = `product`.`id` WHERE bill.id_user = ?',[ Auth::user()->id]);
         $manufactures = Manufactures::all();
         $protype = Protype::all();
         return view('shop-history')->with('getBill', $getBill)->with('protype', $protype)->with('manufactures', $manufactures);

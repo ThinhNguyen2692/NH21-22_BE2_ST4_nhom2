@@ -27,7 +27,7 @@ class CartController extends Controller
             foreach ($cart as $row) {
               //kiem tra san pham co trong cart hay chua
                 if($row->id_product == $id){
-                    if($quantity <= $product->quantity){
+                    if($quantity <= $product->quantity && $quantity > 0){
                         DB::update('update cart set quantity_cart = ?, total_cart = ? where id_product = ?', [$quantity,$total,$row->id_product]);
                        
                     }else{
@@ -76,7 +76,7 @@ class CartController extends Controller
                 'total_cart' => ($product->price-($product->price * ($product->sale_price/100))) * $quantity
              );
             } else{
-                if($quantity <= $product->quantity){
+                if($quantity <= $product->quantity && $quantity > 0) {
                     $_SESSION['cart'][$id_product]['quantity_cart'] = (int) $quantity;
                 $_SESSION['cart'][$id_product]['total_cart'] = ($product->price - ($product->price * ($product->sale_price/100))) * (int) $quantity;
                 }else{
@@ -106,6 +106,7 @@ class CartController extends Controller
         }else{
             if (session_id() === '')
             session_start();
+
             $getCart = $_SESSION['cart'];
         }
      

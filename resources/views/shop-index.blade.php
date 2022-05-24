@@ -88,7 +88,7 @@
                 ?>
                  <div class="pi-price">{{ number_format($row->price)}}</div>
                 <?php }?>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <a href="{{url('/shop-shopping-cart/'. $row->id)}}/1" class="btn btn-default add2cart">Add to cart</a>
               <div class="sticker sticker-new"></div>
             
             </div>
@@ -115,7 +115,7 @@
               <h3><a href="/shop-item/item_{{ $row->id}}">{{ $row->name}}</a></h3>
               <div class="pi-price">{{ number_format($row->price)}}</div>
               <div class="pi-price"> (-{{ $row->sale_price}}%)</div>
-              <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+              <a href="{{url('/shop-shopping-cart/'. $row->id)}}/1" class="btn btn-default add2cart">Add to cart</a>
             
             </div>
           @endforeach

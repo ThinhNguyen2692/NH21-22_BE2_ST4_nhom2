@@ -194,7 +194,7 @@ if(isset(Auth::user()->role_id)) {
           <img src="{{ asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->user_name}}</a>
         </div>
       </div>
 
@@ -266,7 +266,12 @@ if(isset(Auth::user()->role_id)) {
                   <p>Cart</p>
                 </a>
               </li>
-        
+              <li class="nav-item">
+                <a href="{{url('indexAdmin/showReview')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Review</p>
+                </a>
+              </li>
       
         </ul>
       </nav>

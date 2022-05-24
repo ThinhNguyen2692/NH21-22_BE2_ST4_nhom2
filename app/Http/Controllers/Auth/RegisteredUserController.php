@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -40,15 +41,17 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'user_name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         event(new Registered($user));
+
+        DB::update('update users set user_name = ? where email = ?',[$request->name,$request->email]);
+
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+       return redirect(RouteServiceProvider::HOME);
     }
 }

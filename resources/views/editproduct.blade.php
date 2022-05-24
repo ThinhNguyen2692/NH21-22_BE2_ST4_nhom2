@@ -9,12 +9,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Products Add</h1>
+          <h1>Products edit</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Products Add</li>
+            <li class="breadcrumb-item active">Products edit</li>
           </ol>
         </div>
       </div>

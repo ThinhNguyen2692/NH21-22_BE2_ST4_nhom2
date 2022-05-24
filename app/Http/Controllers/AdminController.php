@@ -18,8 +18,14 @@ class AdminController extends Controller
      */
     public function index()
     {
+        
+      $getProductTop = DB::select('SELECT `product`.`id`, `product`.name, SUM(`bill_details`.`quantity_bill`) as SoLuongBan FROM `bill_details` INNER JOIN `product` ON `bill_details`.`id_product`= `product`.`id`GROUP BY `product`.`id` ORDER BY SoLuongBan DESC LIMIT 4');
+     
+      
         //trả về số lượng  trong bảng sản phẩm đang bán
-
+        $soLuongUser = DB::select('select Count(id)  as `soluong` from users where role_id != ? and id != ?',[1,1]);
+        $soLuongBillCustomerTK = DB::select('select Count(id_user)  as `soluong` from bill where id_user != ?',[1]);
+        $soLuongBillCustomer = DB::select('select Count(id_user)  as `soluong` from bill where id_user = ?',[1]);
         $soLuongProducts = DB::select('select Count(id)  as `soluong` from product');
         //trả về số lượng  trong bảng Bill
         $soLuongBill = DB::select('select Count(id)  as `soluong`  from bill');
@@ -28,7 +34,11 @@ class AdminController extends Controller
         return view('indexAdmin')
             ->with('soLuongProduct', $soLuongProducts)
             ->with('soLuongBill', $soLuongBill)
-            ->with('soLuongSale', $soLuongSale);
+            ->with('soLuongSale', $soLuongSale)
+            ->with('getProductTop',$getProductTop)
+            ->with('soLuongUser',$soLuongUser)
+            ->with('soLuongBillCustomerTK',$soLuongBillCustomerTK)
+            ->with('soLuongBillCustomer',$soLuongBillCustomer);
     }
 
     /**
@@ -201,13 +211,18 @@ class AdminController extends Controller
             if($img != null){
                 $Location = "..\public\assets\pages\img\products";
                 $imageName = $img->getClientOriginalName();
-                $img->move($Location, $img->getClientOriginalName());
-                
-                DB::update('update product set name = ?, manu_id = ?, type_id = ?, price = ?, 
-                sale_price = ?, description = ?, feature = ?, quantity = ?, status = ?, Ram = ?
-                , Capacity= ?, chip = ?, origin = ?, image=? where id = ?',[$name_product,$manu_id,
-                $type_id,$price,$saleprice,$desc,$feature,$quantity,$status,$ram,$Capacity,
-                $chip,$origin, $imageName,$id_product]);
+                if(@is_array(getimagesize($Location.$imageName))){
+                    $img->move($Location, $img->getClientOriginalName());
+                    DB::update('update product set name = ?, manu_id = ?, type_id = ?, price = ?, 
+                    sale_price = ?, description = ?, feature = ?, quantity = ?, status = ?, Ram = ?
+                    , Capacity= ?, chip = ?, origin = ?, image=? where id = ?',[$name_product,$manu_id,
+                    $type_id,$price,$saleprice,$desc,$feature,$quantity,$status,$ram,$Capacity,
+                    $chip,$origin, $imageName,$id_product]);
+                } else {
+                    $message = "Lỗi chọn không phải ảnh";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+              
             }else{
                 DB::update('update product set name = ?, manu_id = ?, type_id = ?, price = ?, 
                 sale_price = ?, description = ?, feature = ?, quantity = ?, status = ?, Ram = ?
@@ -229,8 +244,15 @@ class AdminController extends Controller
             if($img != null){
                 $Location = "..\public\assets\pages\img\brands";
                 $imageName = $img->getClientOriginalName();
-                $img->move($Location, $img->getClientOriginalName());
-                DB::update('update manufactures set manu_name = ?, image = ? where id = ?', [$name_manu,$imageName,$id_manu]);
+                if(@is_array(getimagesize($Location.$imageName))){
+                    $img->move($Location, $img->getClientOriginalName());
+                    DB::update('update manufactures set manu_name = ?, image = ? where id = ?', [$name_manu,$imageName,$id_manu]);
+                } else {
+                    $message = "Lỗi chọn không phải ảnh";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+              
+              
             }else {
                 DB::update('update manufactures set manu_name = ? where id = ?', [$name_manu,$id_manu]);
             }

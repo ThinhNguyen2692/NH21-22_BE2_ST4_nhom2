@@ -147,21 +147,21 @@
                 <div class="tab-pane fade in active" id="Reviews">
                   <!--<p>There are no reviews for this product.</p>-->
               
-               @if($getReview != null)
-                @foreach($getReview as $value)
-                  <div class="review-item clearfix">
-                    <div class="review-item-submitted">
-                      <strong>{{$value->user_name}}</strong>
-                      <em>>{{$value->rating}}</em>
-                      <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                    </div>
-                    <div class="review-item-content">
-                      <p>{{$value->review_user}}</p>
-                    </div>
-                  </div>
-                  @endforeach
-      @endif
-                  <!-- BEGIN FORM-->
+                              @if($getReview != null)
+                                @foreach($getReview as $value)
+                                  <div class="review-item clearfix">
+                                    <div class="review-item-submitted">
+                                      <strong>{{$value->user_name}}</strong>
+                                      <em>>{{$value->rating}}</em>
+                                      <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                                    </div>
+                                    <div class="review-item-content">
+                                      <p>{{$value->review_user}}</p>
+                                    </div>
+                                  </div>
+                                  @endforeach
+                      @endif
+                                  <!-- BEGIN FORM-->
                   <form action="{{url('/shop-item/addReview/'.$id_product)}}"  method="post" class="reviews-form" role="form">
                   @csrf
                     <label><h2>Write a review</h2></label>
@@ -189,10 +189,11 @@
                      </div>
                    
                       </div>
-                    </div>
-                    <div class="padding-top-20">
+                      <div class="padding-top-20">
                       <button type="submit" class="btn btn-primary">Send</button>
                     </div>
+                    </div>
+                 
                   </form>
                   <!-- END FORM-->
                 </div>
