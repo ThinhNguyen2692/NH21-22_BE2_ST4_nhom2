@@ -65,7 +65,7 @@ class AdminController extends Controller
             $img = $request->image;
             $Location = "..\public\assets\pages\img\products";
             $imageName = $img->getClientOriginalName();
-            if(@is_array(getimagesize($Location.$imageName))){
+            if(!@is_array(getimagesize($Location.$imageName))){
                 $img->move($Location, $img->getClientOriginalName());
 
                 DB::table('product')->insert([
@@ -82,7 +82,7 @@ class AdminController extends Controller
             $img = $request->image;
             $Location = "..\public\assets\pages\img\brands";
             $imageName = $img->getClientOriginalName();
-            if(@is_array(getimagesize($Location.$imageName))){
+            if(!@is_array(getimagesize($Location.$imageName))){
                 $img->move($Location, $img->getClientOriginalName());
             DB::table('manufactures')->insert([
               ['manu_name'=>$name, 'image'=>$imageName]
@@ -211,7 +211,7 @@ class AdminController extends Controller
             if($img != null){
                 $Location = "..\public\assets\pages\img\products";
                 $imageName = $img->getClientOriginalName();
-                if(@is_array(getimagesize($Location.$imageName))){
+                if(!@is_array(getimagesize($Location.$imageName))){
                     $img->move($Location, $img->getClientOriginalName());
                     DB::update('update product set name = ?, manu_id = ?, type_id = ?, price = ?, 
                     sale_price = ?, description = ?, feature = ?, quantity = ?, status = ?, Ram = ?
@@ -244,15 +244,13 @@ class AdminController extends Controller
             if($img != null){
                 $Location = "..\public\assets\pages\img\brands";
                 $imageName = $img->getClientOriginalName();
-                if(@is_array(getimagesize($Location.$imageName))){
+                if(!@is_array(getimagesize($Location.$imageName))){
                     $img->move($Location, $img->getClientOriginalName());
                     DB::update('update manufactures set manu_name = ?, image = ? where id = ?', [$name_manu,$imageName,$id_manu]);
                 } else {
                     $message = "Lỗi chọn không phải ảnh";
                     echo "<script type='text/javascript'>alert('$message');</script>";
                 }
-              
-              
             }else {
                 DB::update('update manufactures set manu_name = ? where id = ?', [$name_manu,$id_manu]);
             }
@@ -283,7 +281,6 @@ class AdminController extends Controller
      */
     public function destroy($nameShow,$id)
     {
-    
         if ($nameShow == 'products') {
             $soLuong = DB::select('select Count(id_product)  as `soluong` from bill_details where id_product = ?',[$id]);
             $soluongCheck = 0;
@@ -306,7 +303,6 @@ class AdminController extends Controller
                 $message = "Thương hiệu này hiện tại không thể xóa";
                     echo "<script type='text/javascript'>alert('$message');</script>";
             }
-            
         }else {
             $soLuong = DB::select('select Count(type_id)  as `soluong` from product where type_id = ?',[$id]);
             $soluongCheck = 0;

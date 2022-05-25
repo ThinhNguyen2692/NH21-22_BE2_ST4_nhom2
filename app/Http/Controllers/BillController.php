@@ -56,7 +56,7 @@ class BillController extends Controller
         }else{
                 if (session_id() === '')
               session_start();
-            var_dump($_SESSION['cart']);
+          
             DB::table('bill')->insert([
                 ['id_user'=>1, 'address'=>$address, 'total'=>0, 'payment'=>0]
               ]);

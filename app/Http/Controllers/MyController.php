@@ -20,7 +20,7 @@ class MyController extends Controller
             //lấy 10 sp moi
             $productsNew = Product::orderBy('id', 'DESC')->where( 'status', '=', 1)->where( 'quantity', '>', 0)->LIMIT(10)->get();
             //lay san pham noi bat
-            $productsfeature = Product::where('feature', '=', 1)->where( 'status', '=', 1)->where( 'quantity', '>', 0)->orderBy('id', 'DESC')->LIMIT(10)->get();
+            $productsfeature = Product::where('feature', '=', 1)->where( 'status', '=', 1)->where( 'quantity', '>', 0)->orderBy('id', 'DESC')->get();
             $manufactures = Manufactures::all();
             $protype = Protype::all();
             return view('shop-index')->with('protype', $protype)->with('manufactures', $manufactures) ->with('dataNew', $productsNew) ->with('datafeature', $productsfeature) ->with('productSale', $productSale);

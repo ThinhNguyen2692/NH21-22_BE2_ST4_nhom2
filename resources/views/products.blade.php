@@ -63,7 +63,7 @@
                           Price
                       </th>
                       <th>
-                          Price(%)
+                          sale(%)
                       </th>
                       <th>
                           CPU
